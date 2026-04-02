@@ -3,6 +3,7 @@ import "./App.css";
 import NavBar from "./Components/NavBar";
 import Hero from "./Components/Hero";
 import About from "./Components/About";
+import SignUp from "./Components/SignUp";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <div className="max-w-6xl mx-auto">
         <NavBar />
         {/* <Hero /> */}
-        <About/>
+        {/* <About/> */}
+        <SignUp/>
       </div>
     </>
   );

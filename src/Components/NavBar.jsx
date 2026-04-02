@@ -5,8 +5,8 @@ import { faFingerprint } from "@fortawesome/free-solid-svg-icons";
 
 export default function NavBar() {
   return (
-  <div className="w-full border-b-2 border-[#edf0ee] h-18 flex items-center justify-between px-6 ">
-      <div className="flex items-center gap-1">
+  <div className="w-full border-b-2 border-[#edf0ee] h-18 flex items-center justify-between px-6 sticky top-0  bg-white/30 backdrop-blur-md ">
+      <div className="flex items-center gap-1 ">
         <FontAwesomeIcon icon={faFingerprint} className="text-[#6467f2]" /> <span className="text-[#6467f2] font-[800] text-xl" >AuthApp</span>
       </div>
 

@@ -3,6 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Hero() {
+  const pagesName = [
+    { title: "Home", desc: "This Page" },
+    { title: "About", desc: "App info page" },
+    { title: "Login", desc: "Authentication form" },
+    { title: "Sign Up", desc: "Registration Form" },
+    { title: "Dashboard", desc: "Protected - login required" },
+    { title: "Profile", desc: "Your account details" },
+    { title: "Profile/42", desc: "Dynamic: userId route" },
+    { title: "Order / ORD-123", desc: "Dynamic: orderId route" },
+    { title: "Counter", desc: "Testable component" },
+    { title: "404 Page", desc: "Fallback route" },
+  ];
+
   return (
     <div>
       <div className="flex flex-col items-center py-30">
@@ -26,85 +39,23 @@ export default function Hero() {
         </div>
       </div>
 
-      <section className="border-t-2 border-[#edf0ee] py-16 border flex flex-col items-center justify-center" >
-        <h2 className="text-[25px] font-[700] w-fit mx-auto">
-          Explore the Pages
-        </h2>
-        <div className="grid gap-4.5 grid-cols-3">
-          <div className="border">
-            <div className="flex items-center justify-between border">
-              <h5>Home</h5>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>This Page</p>
-          </div>
-          <div>
-            <div className="flex items-center justify-between border">
-              <h5>About</h5>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>App info page</p>
-          </div>
-          <div>
-            <div className="flex items-center justify-between border">
-              <h5>login</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-              
-            </div>
-            <p>Authentication form</p>
-          </div>
-          <div>
-           <div className="flex items-center justify-between border">
-              <h5>Sign Up</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>Registartion Form</p>
-          </div>
-          <div>
-          <div className="flex items-center justify-between border">
-              <h5>Dashboard</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>Protected - login required</p>
-          </div>
-          <div>
-            <div className="flex items-center justify-between border">
-              <h5>Profile</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>Your account details</p>
-          </div>
-          <div>
-            <div className="flex items-center justify-between border">
-              <h5>Profile/42</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-              
-            </div>
-            <p>Dynamic:userld route</p>
-          </div>
-          <div>
-            <div className="flex items-center justify-between border">
-              <h5>Order / ORD-123</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>Dynamic:orderld route</p>
-          </div>
-          <div>
-           <div className="flex items-center justify-between border">
-              <h5>Counter</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>Testable component</p>
-          </div>
-          <div>
-           <div className="flex items-center justify-between border">
-              <h5>404 Page</h5>
-               <FontAwesomeIcon icon={faArrowRight} />
-            </div>
-            <p>Fallback route</p>
-          </div>
+      <section className="border-t-2 border-[#edf0ee] py-16 flex flex-col items-center justify-center">
+  <h2 className="text-[25px] font-[700] w-fit mx-auto">
+    Explore the Pages
+  </h2>
+
+  <div className="grid gap-x-12 gap-y-6 grid-cols-3 py-8">
+    {pagesName.map((page, index) => (
+      <div key={index} className="px-3 py-3 w-72 bg-white rounded-lg">
+        <div className="flex items-center justify-between">
+          <h5 className="font-[600]">{page.title}</h5>
+          <FontAwesomeIcon icon={faArrowRight} className="text-[#848a96]" />
         </div>
-      </section>
+        <p className="text-[14px] text-[#6b7280]">{page.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
     </div>
   );
 }

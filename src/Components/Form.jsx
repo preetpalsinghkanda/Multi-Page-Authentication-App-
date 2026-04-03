@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPen, faEye , faUser} from "@fortawesome/free-solid-svg-icons";
+import { faUserPen, faEye, faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 
 export default function Form(props) {
-
-
-  const{isLogin , setIsLogin} = useContext(AuthApp)
+  const { isLogin, setIsLogin, auth, setAuth , authTonggle } = useContext(AuthApp);
 
   return (
     <div className="flex  justify-center items-center flex-col gap-8 my-10">
@@ -26,18 +24,22 @@ export default function Form(props) {
 
       <div className="rounded-2xl bg-white px-8 py-8 border-[1.7px] flex gap-4 flex-col  border-[#d6d6d682]">
         <div className="flex flex-col gap-4 min-w-[24vw]">
-
-          {!isLogin && <div className="flex flex-col gap-1">
-            <label htmlFor="name" className="text-[14px] text-[#000] font-bold">
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Jack luios"
-              className=" border border-[#d6d6d6] h-10 focus:outline-0 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]"
-            />
-          </div>}
+          {auth === "signup" && (
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor="name"
+                className="text-[14px] text-[#000] font-bold"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Jack luios"
+                className=" border border-[#d6d6d6] h-10 focus:outline-0 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]"
+              />
+            </div>
+          )}
 
           <div className="flex flex-col gap-1">
             <label
@@ -72,34 +74,42 @@ export default function Form(props) {
             </div>
           </div>
 
-          {!isLogin && <div className="flex flex-col gap-1">
-            <label
-              htmlFor="confirm-password"
-              className="text-[14px] text-[#000] font-bold"
-            >
-              Confirm password
-            </label>
-            <div className="border border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
-              <input
-                type="text"
-                id="pass"
-                placeholder="Repeat your password "
-                className=" w-full focus:outline-0"
-              />
-              <FontAwesomeIcon
-                icon={faEye}
-                className="text-[12px] cursor-pointer text-[#7b7a7a]"
-              />
+          {auth === "signup" && (
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor="confirm-password"
+                className="text-[14px] text-[#000] font-bold"
+              >
+                Confirm password
+              </label>
+              <div className="border border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
+                <input
+                  type="text"
+                  id="pass"
+                  placeholder="Repeat your password "
+                  className=" w-full focus:outline-0"
+                />
+                <FontAwesomeIcon
+                  icon={faEye}
+                  className="text-[12px] cursor-pointer text-[#7b7a7a]"
+                />
+              </div>
             </div>
-          </div>}
-
+          )}
         </div>
         <button className=" my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px] bg-[#b1b3f8] text-white">
           {props.btn}
         </button>
         <p className="self-center text-[#7b7a7a] text-[16px]">
           {props.formlast}{" "}
-          <span className="text-[#6467f2] cursor-pointer" onClick={()=>setIsLogin(!isLogin)}>{props.switchbtn}</span>
+          <span
+            className="text-[#6467f2] cursor-pointer"
+            onClick={() => {
+             authTonggle()
+            }}
+          >
+            {props.switchbtn}
+          </span>
         </p>
       </div>
     </div>

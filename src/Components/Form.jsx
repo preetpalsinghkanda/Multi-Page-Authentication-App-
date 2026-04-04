@@ -4,7 +4,7 @@ import { faUserPen, faEye, faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 
 export default function Form(props) {
-  const { isLogin, setIsLogin, auth, setAuth , authTonggle } = useContext(AuthApp);
+  const { auth , authTonggle , page , setPage } = useContext(AuthApp);
 
   return (
     <div className="flex  justify-center items-center flex-col gap-8 my-10">
@@ -24,7 +24,7 @@ export default function Form(props) {
 
       <div className="rounded-2xl bg-white px-8 py-8 border-[1.7px] flex gap-4 flex-col  border-[#d6d6d682]">
         <div className="flex flex-col gap-4 min-w-[24vw]">
-          {auth === "signup" && (
+          {page === "signup" && (
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="name"
@@ -74,7 +74,7 @@ export default function Form(props) {
             </div>
           </div>
 
-          {auth === "signup" && (
+          {page === "signup" && (
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="confirm-password"
@@ -105,7 +105,11 @@ export default function Form(props) {
           <span
             className="text-[#6467f2] cursor-pointer"
             onClick={() => {
-             authTonggle()
+             if(page==="login"){
+              setPage("signup")
+             }else{
+              setPage("login")
+             }
             }}
           >
             {props.switchbtn}

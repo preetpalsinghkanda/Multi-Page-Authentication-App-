@@ -5,18 +5,15 @@ import AuthApp from "./Context";
 export default function AuthProvider({ children }) {
   const [isLogin, setIsLogin] = useState(false);
 
-  const [auth, setAuth] = useState("signup");
+const[page , setPage] = useState("home")
 
-  function authTonggle() {
-    if (auth === "signup") {
-      setAuth("login");
-    } else {
-      setAuth("signup");
-    }
-  }
+
+
+
+  
 
   return (
-    <AuthApp.Provider value={{ isLogin, setIsLogin, auth, setAuth , authTonggle }}>
+    <AuthApp.Provider value={{ isLogin, setIsLogin,   page , setPage }}>
       {children}
     </AuthApp.Provider>
   );

@@ -4,7 +4,22 @@ import { faUserPen, faEye, faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 
 export default function Form(props) {
-  const { auth , authTonggle , page , setPage } = useContext(AuthApp);
+  const {
+    auth,
+    authTonggle,
+    page,
+    setPage,
+    name,
+    setName,
+    setNameErr,
+    nameErr,
+    NameCheck,
+    emailErr,
+    email,
+    setEmail,
+    EmailCheck,
+    setEmailErr,
+  } = useContext(AuthApp);
 
   return (
     <div className="flex  justify-center items-center flex-col gap-8 my-10">
@@ -33,11 +48,21 @@ export default function Form(props) {
                 Full Name
               </label>
               <input
+                onChange={(e) => {
+                  setName(e.target.value);
+                  NameCheck(e.target.value);
+                }}
+                value={name}
                 type="text"
                 id="name"
                 placeholder="Jack luios"
-                className=" border border-[#d6d6d6] h-10 focus:outline-0 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]"
+                className={` ${nameErr ? "focus:border-[#ef4c5b]" : ""} focus:border-[#b1b3f8] focus:border-2 border border-[#d6d6d6] h-10 focus:outline-0 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]`}
               />
+              {nameErr && (
+                <p className="text-[12px] px-1 text-[#ef4c5b]">
+                  Name must be at least 2 characters
+                </p>
+              )}
             </div>
           )}
 
@@ -49,23 +74,29 @@ export default function Form(props) {
               Email address
             </label>
             <input
+              onChange={(e) => {setEmail(e.target.value); setEmailErr(EmailCheck(e.target.value))}}
               type="text"
               id="email"
               placeholder="you@gmail.com"
-              className=" border border-[#d6d6d6] focus:outline-0 h-10 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]"
+              className={` ${emailErr ? "focus:border-[#ef4c5b]" : ""} focus:border-[#b1b3f8] focus:border-2 border border-[#d6d6d6] focus:outline-0 h-10 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]`}
             />
+            {emailErr && (
+              <p className="text-[12px] px-1 text-[#ef4c5b]">
+               {emailErr}
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1">
             <label htmlFor="pass" className="text-[14px] text-[#000] font-bold">
               Password
             </label>
-            <div className="border border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
+            <div className="border focus-within:border-[#b1b3f8] focus-within:border-2  border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
               <input
                 type="text"
                 id="pass"
                 placeholder="Min 6 characters"
-                className=" w-full focus:outline-0"
+                className="w-full focus:outline-0"
               />
               <FontAwesomeIcon
                 icon={faEye}
@@ -82,7 +113,7 @@ export default function Form(props) {
               >
                 Confirm password
               </label>
-              <div className="border border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
+              <div className="border focus-within:border-[#b1b3f8] focus-within:border-2 border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
                 <input
                   type="text"
                   id="pass"
@@ -105,11 +136,11 @@ export default function Form(props) {
           <span
             className="text-[#6467f2] cursor-pointer"
             onClick={() => {
-             if(page==="login"){
-              setPage("signup")
-             }else{
-              setPage("login")
-             }
+              if (page === "login") {
+                setPage("signup");
+              } else {
+                setPage("login");
+              }
             }}
           >
             {props.switchbtn}

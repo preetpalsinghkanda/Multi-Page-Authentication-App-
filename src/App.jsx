@@ -5,7 +5,7 @@ import Hero from "./Components/Hero";
 import About from "./Components/About";
 import Form from "./Components/Form";
 import AuthApp from "./Context/Context";
-import Error from './Components/Error'
+import Error from './Components/Error';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPen, faEye , faUser} from "@fortawesome/free-solid-svg-icons";
 

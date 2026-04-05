@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPen, faEye , faUser} from "@fortawesome/free-solid-svg-icons";
 import Profile from "./Components/Profile";
 import Dashboard from "./Components/Dashboard";
+import OrderProgress from "./Components/OrderProgress";
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
       <div className="max-w-6xl mx-auto">
         <NavBar />
        
-       {page==="home" && <Hero />}
+       {/* {page==="home" && <Hero />}
         {page==="about" && <About/>}
         
         {page==="login" && <Form icon={faUser} heading={"Welcome back"} subH={"Sign in to your account"} btn={"Sign in"} formlast={"Don't have an account?"} switchbtn={"Sign up"}/> }
@@ -27,7 +28,9 @@ function App() {
         {page==="signup"   && <Form icon={faUserPen} heading={"Create an account"} subH={"Sign up to get started"} btn={"Create account"} formlast={"Already have an account?"} switchbtn={"Sign in"}/>} 
          {page==="error" && <Error/>}
          {page==="profile"   && <Profile/>} 
-        {page==="dashboard"   && <Dashboard/>} 
+        {page==="dashboard"   && <Dashboard/>}  */}
+
+        <OrderProgress/>
          
          
       </div>

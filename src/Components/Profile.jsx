@@ -6,7 +6,8 @@ import AuthApp from "../Context/Context";
 export default function Profile() {
     const{setPage}=useContext(AuthApp)
   return (
-    <div className="flex m-auto mx-70 py-15 flex-col gap-8 ">
+    <div className="flex m-auto mx-70 py-10 flex-col gap-8 ">
+      
       <div
         className="text-[#848a96] flex items-center gap-2 cursor-pointer"
         onClick={() => setPage("home")}

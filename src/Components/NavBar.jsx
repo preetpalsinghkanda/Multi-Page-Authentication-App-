@@ -28,6 +28,10 @@ export default function NavBar() {
         >
           About
         </button>
+
+
+
+        
       </div>
 
       <div className="flex gap-3">

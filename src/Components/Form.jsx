@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPen, faEye, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUserPen, faEye, faUser, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 
 export default function Form(props) {
@@ -29,6 +29,10 @@ export default function Form(props) {
     confirmPassCheck,
     setConfirmPassErr,
     confirmPassErr,
+    setIsHidePass,
+    isHidePass,
+      isHideConfirmPass,
+        setIsHideConfirmPass
   } = useContext(AuthApp);
 
   return (
@@ -110,17 +114,18 @@ export default function Form(props) {
                   setPass(e.target.value);
                   setPassErr(PassCheck(e.target.value));
                 }}
-                type="password"
+                type={isHidePass ? "password" : "text"}
                 id="pass"
                 placeholder="Min 6 characters"
                 className="w-full focus:outline-0"
                 value={pass}
               />
               <FontAwesomeIcon
-                icon={faEye}
+              onClick={()=>setIsHidePass(!isHidePass)}
+                icon={isHidePass ? faEye : faEyeSlash}
                 className="text-[12px] cursor-pointer text-[#7b7a7a]"
               />
-            </div>
+            </div> 
             {passErr && (
               <p className="text-[12px] px-1 text-[#ef4c5b]">{passErr}</p>
             )}
@@ -141,13 +146,14 @@ export default function Form(props) {
                     setConfirmPassErr(confirmPassCheck(e.target.value));
                   }}
                   value={confirmPass}
-                   type="password"
+                 type={isHideConfirmPass ? "password" : "text"}
                   id="pass"
                   placeholder="Repeat your password "
                   className=" w-full focus:outline-0"
                 />
                 <FontAwesomeIcon
-                  icon={faEye}
+                 onClick={()=>setIsHideConfirmPass(!isHideConfirmPass)}
+                  icon={isHideConfirmPass ? faEye : faEyeSlash}
                   className="text-[12px] cursor-pointer text-[#7b7a7a]"
                 />
               </div>
@@ -158,7 +164,7 @@ export default function Form(props) {
             </div>
           )}
         </div>
-        <button className=" my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px] bg-[#b1b3f8] text-white">
+        <button disabled className=" disabled:bg-[#b1b3f8] my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px]  bg-[#6467f2] text-white">
           {props.btn}
         </button>
         <p className="self-center text-[#7b7a7a] text-[16px]">

@@ -21,6 +21,9 @@ export default function AuthProvider({ children }) {
   const[confirmPass , setConfirmPass] = useState("");
   const [confirmPassErr , setConfirmPassErr] = useState("")
 
+  const[isHidePass , setIsHidePass] = useState(true);
+const [isHideConfirmPass , setIsHideConfirmPass] = useState(true);
+
 
   function NameCheck(value) {
     if (value.trim().length < 2) {
@@ -65,6 +68,8 @@ if(value.trim().length === 0){
 }
 
 
+
+
   return (
     <AuthApp.Provider
       value={{
@@ -92,6 +97,12 @@ if(value.trim().length === 0){
         confirmPassCheck,
         confirmPassErr,
         setConfirmPassErr,
+        isHidePass,
+        setIsHidePass,
+        isHideConfirmPass,
+        setIsHideConfirmPass
+
+
 
       }}
     >

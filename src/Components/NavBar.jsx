@@ -29,6 +29,16 @@ export default function NavBar() {
           About
         </button>
 
+         <button
+          onClick={() => setPage("dashboard")}
+          className={`font-bold text-[#6c7381] cursor-pointer ${page==="dashboard" ? "bg-[#eaebfb] text-[#6467f2]" : "text-[#6c7381] hover:text-[black] hover:bg-[#d3d8e33c]"} px-4 py-2 rounded-lg cursor-pointer `}
+        >
+          Dashboard
+        </button>
+
+
+
+
           <button
           onClick={() => setPage("profile")}
           className={`font-bold text-[#6c7381] cursor-pointer ${page==="profile" ? "bg-[#eaebfb] text-[#6467f2]" : "text-[#6c7381] hover:text-[black] hover:bg-[#d3d8e33c]"} px-4 py-2 rounded-lg cursor-pointer `}

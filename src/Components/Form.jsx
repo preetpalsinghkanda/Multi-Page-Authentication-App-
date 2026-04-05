@@ -19,6 +19,16 @@ export default function Form(props) {
     setEmail,
     EmailCheck,
     setEmailErr,
+    setPass,
+    pass,
+    PassCheck,
+    passErr,
+    setPassErr,
+    confirmPass,
+    setConfirmPass,
+    confirmPassCheck,
+    setConfirmPassErr,
+    confirmPassErr,
   } = useContext(AuthApp);
 
   return (
@@ -56,7 +66,7 @@ export default function Form(props) {
                 type="text"
                 id="name"
                 placeholder="Jack luios"
-                className={` ${nameErr ? "focus:border-[#ef4c5b]" : ""} focus:border-[#b1b3f8] focus:border-2 border border-[#d6d6d6] h-10 focus:outline-0 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]`}
+                className={` ${nameErr ? "focus:border-[#ef4c5b] border-[#ef4c5b]" : ""} focus:border-[#b1b3f8] focus:border-2 border border-[#d6d6d6] h-10 focus:outline-0 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]`}
               />
               {nameErr && (
                 <p className="text-[12px] px-1 text-[#ef4c5b]">
@@ -74,16 +84,17 @@ export default function Form(props) {
               Email address
             </label>
             <input
-              onChange={(e) => {setEmail(e.target.value); setEmailErr(EmailCheck(e.target.value))}}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setEmailErr(EmailCheck(e.target.value));
+              }}
               type="text"
               id="email"
               placeholder="you@gmail.com"
-              className={` ${emailErr ? "focus:border-[#ef4c5b]" : ""} focus:border-[#b1b3f8] focus:border-2 border border-[#d6d6d6] focus:outline-0 h-10 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]`}
+              className={` ${emailErr ? "focus:border-[#ef4c5b] border-[#ef4c5b]" : ""} focus:border-[#b1b3f8] focus:border-2 border border-[#d6d6d6] focus:outline-0 h-10 rounded-lg px-3 placeholder:font-[500] bg-[#f9fafb]`}
             />
             {emailErr && (
-              <p className="text-[12px] px-1 text-[#ef4c5b]">
-               {emailErr}
-              </p>
+              <p className="text-[12px] px-1 text-[#ef4c5b]">{emailErr}</p>
             )}
           </div>
 
@@ -91,18 +102,28 @@ export default function Form(props) {
             <label htmlFor="pass" className="text-[14px] text-[#000] font-bold">
               Password
             </label>
-            <div className="border focus-within:border-[#b1b3f8] focus-within:border-2  border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
+            <div
+              className={` ${passErr ? "focus-within:border-[#ef4c5b] border-[#ef4c5b]" : ""} border focus-within:border-[#b1b3f8] focus-within:border-2  border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]`}
+            >
               <input
-                type="text"
+                onChange={(e) => {
+                  setPass(e.target.value);
+                  setPassErr(PassCheck(e.target.value));
+                }}
+                type="password"
                 id="pass"
                 placeholder="Min 6 characters"
                 className="w-full focus:outline-0"
+                value={pass}
               />
               <FontAwesomeIcon
                 icon={faEye}
                 className="text-[12px] cursor-pointer text-[#7b7a7a]"
               />
             </div>
+            {passErr && (
+              <p className="text-[12px] px-1 text-[#ef4c5b]">{passErr}</p>
+            )}
           </div>
 
           {page === "signup" && (
@@ -115,7 +136,12 @@ export default function Form(props) {
               </label>
               <div className="border focus-within:border-[#b1b3f8] focus-within:border-2 border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
                 <input
-                  type="text"
+                  onChange={(e) => {
+                    setConfirmPass(e.target.value);
+                    setConfirmPassErr(confirmPassCheck(e.target.value));
+                  }}
+                  value={confirmPass}
+                   type="password"
                   id="pass"
                   placeholder="Repeat your password "
                   className=" w-full focus:outline-0"
@@ -125,6 +151,10 @@ export default function Form(props) {
                   className="text-[12px] cursor-pointer text-[#7b7a7a]"
                 />
               </div>
+
+              {confirmPassErr && (
+                <p className="text-[12px] px-1 text-[#ef4c5b]">{confirmPassErr}</p>
+              )}
             </div>
           )}
         </div>

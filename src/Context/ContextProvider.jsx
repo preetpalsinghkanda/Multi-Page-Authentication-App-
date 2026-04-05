@@ -13,6 +13,15 @@ export default function AuthProvider({ children }) {
   const [email, setEmail] = useState("");
   const [emailErr, setEmailErr] = useState("");
 
+
+  const[pass , setPass] = useState("");
+  const[passErr , setPassErr] = useState("");
+
+
+  const[confirmPass , setConfirmPass] = useState("");
+  const [confirmPassErr , setConfirmPassErr] = useState("")
+
+
   function NameCheck(value) {
     if (value.trim().length < 2) {
       setNameErr(true);
@@ -32,6 +41,30 @@ export default function AuthProvider({ children }) {
     }
   }
 
+
+  function PassCheck(value){
+
+    if(value.length<6){
+      return "Password must be at least 6 characters"
+    }
+
+  }
+
+function confirmPassCheck(value){
+
+if(value.trim().length === 0){
+  return "Please confirm your password"
+}
+
+  else if(pass.trim() !== value.trim() ){
+      return "Passwords do not match"
+  }
+  else{
+    return ""
+  }
+}
+
+
   return (
     <AuthApp.Provider
       value={{
@@ -49,6 +82,17 @@ export default function AuthProvider({ children }) {
         emailErr,
         setEmailErr,
         EmailCheck,
+        pass,
+        setPass,
+        PassCheck,
+        passErr,
+        setPassErr,
+        setConfirmPass,
+        confirmPass,
+        confirmPassCheck,
+        confirmPassErr,
+        setConfirmPassErr,
+
       }}
     >
       {children}

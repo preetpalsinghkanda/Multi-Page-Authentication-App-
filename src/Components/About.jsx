@@ -17,7 +17,7 @@ export default function About() {
       <div className="text-[#848a96] flex items-center gap-2 cursor-pointer" onClick={()=>setPage("home")}>
         {" "}
         <FontAwesomeIcon icon={faArrowLeft} className=" text-[16px]" />
-        <button className="">Back to Home</button>
+        <button className="cursor-pointer">Back to Home</button>
       </div>
 
       <div className="flex py-8 flex-col items-start">

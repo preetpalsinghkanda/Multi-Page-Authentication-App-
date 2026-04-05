@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft , faUser , faEnvelope , faCalendar , faUserCheck , faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
+import AuthApp from "../Context/Context";
 
 export default function Profile() {
+    const{setPage}=useContext(AuthApp)
   return (
-    <div className="flex m-auto mx-70 py-15 flex-col gap-8">
+    <div className="flex m-auto mx-70 py-15 flex-col gap-8 ">
       <div
         className="text-[#848a96] flex items-center gap-2 cursor-pointer"
         onClick={() => setPage("home")}
       >
         {" "}
         <FontAwesomeIcon icon={faArrowLeft} className=" text-[16px]" />
-        <button className="">Back to Home</button>
+        <button className="cursor-pointer">Back to Home</button>
       </div>
 
       <div className=" rounded-2xl   ">

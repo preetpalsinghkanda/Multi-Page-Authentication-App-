@@ -1,4 +1,4 @@
-import React, { children } from "react";
+import React, { children, useEffect } from "react";
 import { useState } from "react";
 import AuthApp from "./Context";
 
@@ -22,7 +22,29 @@ export default function AuthProvider({ children }) {
   const [confirmPassErr , setConfirmPassErr] = useState("")
 
   const[isHidePass , setIsHidePass] = useState(true);
-const [isHideConfirmPass , setIsHideConfirmPass] = useState(true);
+  const [isHideConfirmPass , setIsHideConfirmPass] = useState(true);
+
+
+const[ isValidSignupDetails , setIsValidSignupDetails] = useState(false)
+
+
+
+function checkUserDetails(){
+
+  if(!nameErr && !emailErr && !passErr && !confirmPassErr){
+    setIsValidSignupDetails(true)
+  }else{
+    setIsValidSignupDetails(false)
+  }
+
+}
+
+useEffect(()=>{checkUserDetails()},[name,email,pass,confirmPass])
+
+
+
+
+
 
 
   function NameCheck(value) {
@@ -43,6 +65,8 @@ const [isHideConfirmPass , setIsHideConfirmPass] = useState(true);
       return "";
     }
   }
+
+
 
 
   function PassCheck(value){
@@ -100,7 +124,10 @@ if(value.trim().length === 0){
         isHidePass,
         setIsHidePass,
         isHideConfirmPass,
-        setIsHideConfirmPass
+        setIsHideConfirmPass,
+        isValidSignupDetails,
+        setIsValidSignupDetails,
+
 
 
 

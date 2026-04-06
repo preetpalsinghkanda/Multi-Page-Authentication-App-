@@ -46,6 +46,7 @@ function App() {
                 <Route path="/profile" element={<Profile />}/>
                 <Route  path="/dashboard" element={<Dashboard />}/>
                 <Route path="*" element={<Error />}/>
+                <Route path="not-found" element={<Error/>} />
            
   {/*               
                 

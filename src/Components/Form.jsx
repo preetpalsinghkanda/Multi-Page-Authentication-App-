@@ -2,8 +2,12 @@ import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPen, faEye, faUser, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 export default function Form(props) {
+  
+  const navigate = useNavigate()
+
   const {
     auth,
     authTonggle,
@@ -31,11 +35,15 @@ export default function Form(props) {
     confirmPassErr,
     setIsHidePass,
     isHidePass,
-      isHideConfirmPass,
-        setIsHideConfirmPass
+    isHideConfirmPass,
+    setIsHideConfirmPass,
+    isValidSignupDetails,
+
   } = useContext(AuthApp);
 
   return (
+    
+
     <div className="flex  justify-center items-center flex-col gap-8 my-10">
       <div className="flex  flex-col justify-center items-center gap-2">
         <div className=" flex  px-2.5 py-3  rounded-full bg-[#eaebf9]">
@@ -164,7 +172,7 @@ export default function Form(props) {
             </div>
           )}
         </div>
-        <button disabled className=" disabled:bg-[#b1b3f8] my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px]  bg-[#6467f2] text-white">
+        <button  disabled={!isValidSignupDetails} className=" disabled:bg-[#b1b3f8] my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px]  bg-[#6467f2] text-white">
           {props.btn}
         </button>
         <p className="self-center text-[#7b7a7a] text-[16px]">
@@ -174,8 +182,10 @@ export default function Form(props) {
             onClick={() => {
               if (page === "login") {
                 setPage("signup");
+                navigate("/signup")
               } else {
                 setPage("login");
+                navigate("/login")
               }
             }}
           >

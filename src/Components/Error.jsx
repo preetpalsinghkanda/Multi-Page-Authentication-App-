@@ -5,8 +5,10 @@ import {
   faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 export default function Error() {
+  const navigate = useNavigate()
   const{setPage} = useContext(AuthApp)
   return (
     <div className="flex flex-col my-24 items-center mx-auto ">
@@ -22,7 +24,7 @@ export default function Error() {
         This route doesn't exist. In React Router, I added a fallback Route
         without a path to catch all unmatched URLs.
       </p>
-      <button onClick={()=>setPage("home")} className="bg-[#6467f2] text-white rounded-lg px-4 py-2.5 cursor-pointer mt-8">
+      <button onClick={()=>{setPage("home"); navigate("/")}} className="bg-[#6467f2] text-white rounded-lg px-4 py-2.5 cursor-pointer mt-8">
         <FontAwesomeIcon icon={faHouse} /> <span>Go Home</span>
       </button>
     </div>

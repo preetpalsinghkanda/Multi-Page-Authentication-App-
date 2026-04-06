@@ -19,7 +19,7 @@ export default function Hero() {
   { title: "Profile", path: "/profile", desc: "Your account details" , page:"profile" },
   { title: "Profile/42", path: "/profile/42", desc: "Dynamic: userId route" },
   { title: "Order / ORD-123", path: "/order/ORD-123", desc: "Dynamic: orderId route" },
-  { title: "404 Page", path: "*", desc: "Fallback route" },
+  { title: "404 Page", path: "not-found", desc: "Fallback route" },
 ];
 
   return (

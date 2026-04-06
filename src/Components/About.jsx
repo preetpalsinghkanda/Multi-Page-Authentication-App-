@@ -9,12 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import AuthApp from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
+  const navigate = useNavigate()
   const{setPage}=useContext(AuthApp)
   return (
     <div className="flex m-auto mx-40 py-15 flex-col">
-      <div className="text-[#848a96] flex items-center gap-2 cursor-pointer" onClick={()=>setPage("home")}>
+      <div className="text-[#848a96] flex items-center gap-2 cursor-pointer" onClick={()=>{setPage("home"); navigate("/")}}>
         {" "}
         <FontAwesomeIcon icon={faArrowLeft} className=" text-[16px]" />
         <button className="cursor-pointer">Back to Home</button>

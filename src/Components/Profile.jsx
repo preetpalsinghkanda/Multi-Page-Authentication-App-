@@ -2,15 +2,17 @@ import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft , faUser , faEnvelope , faCalendar , faUserCheck , faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+    const navigate = useNavigate()
     const{setPage}=useContext(AuthApp)
   return (
     <div className="flex m-auto mx-70 py-10 flex-col gap-8 ">
       
       <div
         className="text-[#848a96] flex items-center gap-2 cursor-pointer"
-        onClick={() => setPage("home")}
+        onClick={() => {setPage("home"); navigate("/")}}
       >
         {" "}
         <FontAwesomeIcon icon={faArrowLeft} className=" text-[16px]" />

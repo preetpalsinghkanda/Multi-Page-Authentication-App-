@@ -2,22 +2,25 @@ import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
+
+  const navigate = useNavigate();
+
   const { page, setPage } = useContext(AuthApp);
 
-  const pagesName = [
-    { title: "Home", desc: "This Page" },
-    { title: "About", desc: "App info page" },
-    { title: "Login", desc: "Authentication form" },
-    { title: "Sign Up", desc: "Registration Form" },
-    { title: "Dashboard", desc: "Protected - login required" },
-    { title: "Profile", desc: "Your account details" },
-    { title: "Profile/42", desc: "Dynamic: userId route" },
-    { title: "Order / ORD-123", desc: "Dynamic: orderId route" },
-    { title: "Counter", desc: "Testable component" },
-    { title: "404 Page", desc: "Fallback route" },
-  ];
+ const pagesName = [
+  { title: "Home", path: "/", desc: "This Page" , page:"home"} ,
+  { title: "About", path: "/about", desc: "App info page" , page:"about"},
+  { title: "Login", path: "/login", desc: "Authentication form" , page:"login"},
+  { title: "Sign Up", path: "/signup", desc: "Registration Form" , page:"signup"},
+  { title: "Dashboard", path: "/dashboard", desc: "Protected - login required" , page:"dashboard" },
+  { title: "Profile", path: "/profile", desc: "Your account details" , page:"profile" },
+  { title: "Profile/42", path: "/profile/42", desc: "Dynamic: userId route" },
+  { title: "Order / ORD-123", path: "/order/ORD-123", desc: "Dynamic: orderId route" },
+  { title: "404 Page", path: "*", desc: "Fallback route" },
+];
 
   return (
     <div>
@@ -36,11 +39,11 @@ export default function Hero() {
 
         <div className="flex gap-5">
           <button
-            onClick={() => setPage("signup")}
+            onClick={() => {setPage("signup"); navigate("/signup")} }
             className="border rounded-lg px-5 py-3 font-[700] text-white bg-[#6467f2] cursor-pointer "
           >{`Get Started ->`}</button>
           <button
-            onClick={() => setPage("login")}
+            onClick={() => {setPage("login"); navigate("/login")}}
             className="rounded-lg px-5 py-3 font-[700] text-black cursor-pointer transition-all  border border-[#e5e7eb] hover:bg-[#edf0ee]"
           >
             Login
@@ -54,8 +57,8 @@ export default function Hero() {
         </h2>
 
         <div className="grid gap-x-12 gap-y-6 grid-cols-3 py-8">
-          {pagesName.map((page, index) => (
-            <div key={index} className="px-3 py-3 w-72 bg-white rounded-lg">
+          {pagesName.map((page, index) =>(
+            <div key={index} onClick={()=>{navigate(page.path); setPage(page.page)}}  className="cursor-pointer px-3 py-3 w-72 bg-white rounded-lg">
               <div className="flex items-center justify-between">
                 <h5 className="font-[600]">{page.title}</h5>
                 <FontAwesomeIcon

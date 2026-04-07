@@ -11,56 +11,73 @@ import { faUserPen, faEye, faUser } from "@fortawesome/free-solid-svg-icons";
 import Profile from "./Components/Profile";
 import Dashboard from "./Components/Dashboard";
 import OrderProgress from "./Components/OrderProgress";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
+import ProtectedRoute from "./Auth/ProtectedRoute";
 
 function App() {
   const { isLogin, auth, page } = useContext(AuthApp);
   return (
     <>
-      <BrowserRouter>
-        <div className="max-w-6xl mx-auto">
-          <NavBar />
-          <Routes>
-            <Route>
-              <Route path="/" element={<Hero />} />
-              <Route path="/about" element={<About />} />
+      <div className="max-w-6xl mx-auto">
+        <NavBar />
+        <Routes>
+          <Route>
+            <Route path="/home" element={<Hero />} />
+            <Route path="/" element={<Hero />} />
+            <Route path="/about" element={<About />} />
 
-              <Route path="/login" element={<Form
+            <Route
+              path="/login"
+              element={
+                <Form
                   icon={faUser}
                   heading={"Welcome back"}
                   subH={"Sign in to your account"}
                   btn={"Sign in"}
                   formlast={"Don't have an account?"}
                   switchbtn={"Sign up"}
-                />}/>
-                
-                <Route path="/signup" element={<Form
+                />
+              }
+            />
+
+            <Route
+              path="/signup"
+              element={
+                <Form
                   icon={faUserPen}
                   heading={"Create an account"}
                   subH={"Sign up to get started"}
                   btn={"Create account"}
                   formlast={"Already have an account?"}
                   switchbtn={"Sign in"}
-                />}/>
+                />
+              }
+            />
 
-                <Route path="/profile" element={<Profile />}/>
-                <Route  path="/dashboard" element={<Dashboard />}/>
-                <Route path="*" element={<Error />}/>
-                <Route path="not-found" element={<Error/>} />
-           
-  {/*               
-                
-              )}
-              
-              
-              
-             
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<Error />} />
+            <Route path="not-found" element={<Error />} />
 
-              <OrderProgress /> */}
-            </Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
+            {/* <OrderProgress />  */}
+          </Route>
+        </Routes>
+      </div>
     </>
   );
 }

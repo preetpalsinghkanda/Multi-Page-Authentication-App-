@@ -1,6 +1,7 @@
 import React, { children, useEffect } from "react";
 import { useState } from "react";
 import AuthApp from "./Context";
+import { useLocation } from "react-router-dom";
 
 export default function AuthProvider({ children }) {
   const [isLogin, setIsLogin] = useState(false);
@@ -13,39 +14,54 @@ export default function AuthProvider({ children }) {
   const [email, setEmail] = useState("");
   const [emailErr, setEmailErr] = useState("");
 
+  const [pass, setPass] = useState("");
+  const [passErr, setPassErr] = useState("");
 
-  const[pass , setPass] = useState("");
-  const[passErr , setPassErr] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [confirmPassErr, setConfirmPassErr] = useState("");
 
+  const [isHidePass, setIsHidePass] = useState(true);
+  const [isHideConfirmPass, setIsHideConfirmPass] = useState(true);
 
-  const[confirmPass , setConfirmPass] = useState("");
-  const [confirmPassErr , setConfirmPassErr] = useState("")
+  const [isValidSignupDetails, setIsValidSignupDetails] = useState(false);
 
-  const[isHidePass , setIsHidePass] = useState(true);
-  const [isHideConfirmPass , setIsHideConfirmPass] = useState(true);
+  const location = useLocation();
 
+ 
 
-const[ isValidSignupDetails , setIsValidSignupDetails] = useState(false)
+  useEffect(() => {
+    if (location.pathname === "/signup") {
+      setPage("signup");
+    } else if (location.pathname === "/login") {
+      setPage("login");
+    } else if (location.pathname === "/dashboard") {
+      setPage("dashboard");
+    } else if (location.pathname === "/about") {
+      setPage("about");
+    } else if (location.pathname === "/profile") {
+      setPage("profile");
+    }
+  }, [location.pathname]);
 
+  function checkUserDetails() {
+    const isValid =
+      !nameErr &&
+      !emailErr &&
+      !passErr &&
+      !confirmPassErr &&
+      name &&
+      email &&
+      pass &&
+      confirmPass;
 
-
-function checkUserDetails(){
-
-  if(!nameErr && !emailErr && !passErr && !confirmPassErr){
-    setIsValidSignupDetails(true)
-  }else{
-    setIsValidSignupDetails(false)
+      if(isValid && pass === confirmPass ){
+          setIsValidSignupDetails(isValid);
+      }
   }
 
-}
-
-useEffect(()=>{checkUserDetails()},[name,email,pass,confirmPass])
-
-
-
-
-
-
+  useEffect(() => {
+    checkUserDetails();
+  }, [nameErr, emailErr, passErr, confirmPassErr]);
 
   function NameCheck(value) {
     if (value.trim().length < 2) {
@@ -66,33 +82,21 @@ useEffect(()=>{checkUserDetails()},[name,email,pass,confirmPass])
     }
   }
 
-
-
-
-  function PassCheck(value){
-
-    if(value.length<6){
-      return "Password must be at least 6 characters"
+  function PassCheck(value) {
+    if (value.length < 6) {
+      return "Password must be at least 6 characters";
     }
-
   }
 
-function confirmPassCheck(value){
-
-if(value.trim().length === 0){
-  return "Please confirm your password"
-}
-
-  else if(pass.trim() !== value.trim() ){
-      return "Passwords do not match"
+  function confirmPassCheck(value) {
+    if (value.trim().length === 0) {
+      return "Please confirm your password";
+    } else if (pass.trim() !== value.trim()) {
+      return "Passwords do not match";
+    } else {
+      return "";
+    }
   }
-  else{
-    return ""
-  }
-}
-
-
-
 
   return (
     <AuthApp.Provider
@@ -127,10 +131,6 @@ if(value.trim().length === 0){
         setIsHideConfirmPass,
         isValidSignupDetails,
         setIsValidSignupDetails,
-
-
-
-
       }}
     >
       {children}

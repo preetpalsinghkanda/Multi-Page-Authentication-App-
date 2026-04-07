@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft , faUser , faEnvelope , faCalendar , faUserCheck , faArrowRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 import { useNavigate } from "react-router-dom";
+import { useClerk } from "@clerk/clerk-react";
 
 export default function Profile() {
+  const{signOut} = useClerk();
     const navigate = useNavigate()
     const{setPage}=useContext(AuthApp)
   return (
@@ -78,7 +80,7 @@ export default function Profile() {
         </div>
         <hr className="border-1 border-[#a4a4a464]" />
 
-        <button className=" flex items-center gap-2 px-4 rounded-lg py-1.5 mt-5 bg-[#fdecec] text-[#ef4374] font-bold"> <FontAwesomeIcon icon={faArrowRightFromBracket} />Sign out</button>
+        <button onClick={()=> signOut()} className=" flex items-center gap-2 px-4 rounded-lg py-1.5 mt-5 bg-[#fdecec] text-[#ef4374] font-bold"> <FontAwesomeIcon icon={faArrowRightFromBracket} />Sign out</button>
 
       </div>
 

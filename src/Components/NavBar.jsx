@@ -8,13 +8,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 import { useNavigate } from "react-router-dom";
-import { useUser , useClerk } from "@clerk/clerk-react";
+import { useUser, useClerk } from "@clerk/clerk-react";
 
 export default function NavBar() {
-  const {name , email} = useContext(AuthApp)
-
-  const { isSignedIn , user} = useUser();
-  const{signOut} = useClerk();
+  const { isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
   const navigate = useNavigate();
   const { authTonggle, auth, setAuth, page, setPage } = useContext(AuthApp);
   return (
@@ -116,7 +114,7 @@ export default function NavBar() {
 
             <button
               onClick={() => signOut()}
-              className="flex items-center gap-2 px-4 rounded-lg py-1.5 bg-[#fdecec] text-[#ef4374] font-bold"
+              className=" cursor-pointer flex items-center gap-2 px-4 rounded-lg py-1.5 bg-[#fdecec] text-[#ef4374] font-bold"
             >
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
               Logout

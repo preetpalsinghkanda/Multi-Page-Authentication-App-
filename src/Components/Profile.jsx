@@ -28,7 +28,7 @@ export default function Profile() {
       <div className=" rounded-2xl   ">
         <div className="bg-[#e1e1fc] flex items-center gap-6 py-10 rounded-t-2xl px-8">
           <div className="w-20 h-20 rounded-full bg-[#6467f2] text-white flex items-center justify-center text-[24px] font-[800] ">
-            {firstLastLetter(user?.fullName)}
+            {firstLastLetter(user?.fullName.toUpperCase())}
           </div>
           <div className="flex flex-col items-start ">
             <h3 className="text-black font-[700] text-2xl">{user?.fullName || user?.firstName || "Name not found"}</h3>

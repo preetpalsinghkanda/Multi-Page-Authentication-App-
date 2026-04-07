@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faCode} from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
@@ -48,7 +48,8 @@ export default function Hero() {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-30">
+      <div className="flex flex-col items-center py-25">
+        <div className="text-[#6467f2] mb-8 flex items-center gap-2 px-10 text-[16px] font-[600] py-1 rounded-full bg-[#eaebf9]"><FontAwesomeIcon icon={faCode}  /><span>Learn + Code + Repeat</span></div>
         <h1 className="text-[54px] font-[800] text-base/16">
           Multi-Page Auth App{" "}
           <span className="w-fit mx-auto block  text-[#6467f2]">
@@ -108,10 +109,18 @@ export default function Hero() {
             <div
               key={index}
               onClick={() => {
-                navigate(page.path);
-                setPage(page.page);
+                if (
+                  isSignedIn &&
+                  (page.path === "/login" || page.path === "/signup")
+                ) {
+                  navigate("/dashboard");
+                  setPage("dashboard");
+                } else {
+                  navigate(page.path);
+                  setPage(page.page);
+                }
               }}
-              className="cursor-pointer px-3 py-3 w-72 bg-white rounded-lg"
+              className="cursor-pointer px-5 py-4 w-72 bg-white rounded-lg"
             >
               <div className="flex items-center justify-between">
                 <h5 className="font-[600]">{page.title}</h5>

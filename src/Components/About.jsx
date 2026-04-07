@@ -47,7 +47,7 @@ export default function About() {
                 />
                 <div>
                   <h5 className="text-[20px] font-[600]">
-                    React Router — Navigation & Dynamic Routing
+                    React Router (Navigation & Dynamic Routing)
                   </h5>
                   <p className="text-[#62666c] py-3">
                     Client-side routing with wouter, BrowserRouter equivalent,
@@ -81,7 +81,7 @@ export default function About() {
                 />
                 <div>
                   <h5 className="text-[20px] font-[600]">
-                    React Router — Navigation & Dynamic Routing
+                    React Router (Navigation & Dynamic Routing)
                   </h5>
                   <p className="text-[#62666c] py-3">
                     Client-side routing with wouter, BrowserRouter equivalent,
@@ -99,11 +99,11 @@ export default function About() {
               <li>React Js</li>
               <li>React Context API</li>
               <li>Tailwind CSS</li>
-              <li>unknown</li>
-              <li>unknown</li>
-              <li>unknown</li>
-              <li>unknown</li>
-              <li>unknown</li>
+              <li>Context API</li>
+              <li>Clerk Authentication</li>
+              <li>Font Awesome</li>
+              <li>Dynamic Routing</li>
+              <li>Protected Routes</li>
             </ul>
           </section>
 
@@ -111,13 +111,8 @@ export default function About() {
             <h4 className="font-bold text-xl mb-6">
               Dynamic Routes Demonstrated
             </h4>
-            <div className="flex flex-col gap-3">
-              <div className="flex gap-2 rounded p-1.5 text-sm bg-[#f0f2f4a5] px-4 text-[#62666c]">
-                <span className="text-[#7667f2] font-[700]">
-                  {"'/profile/:userId'"}
-                </span>
-                - View any user by ID
-              </div>
+            <div className="flex flex-col">
+              
               <div className="flex gap-2 rounded p-1.5 text-sm bg-[#f0f2f4a5] px-4 text-[#62666c]">
                 <span className="text-[#7667f2] font-[700]">
                   {"'/order/:orderId'"}

@@ -124,12 +124,12 @@ export default function AuthProvider({ children }) {
     }
   }
 
- const firstLastLetter = (name = "") => {
-  const words = name.trim().split(" ");
-  return words.length === 1
-    ? words[0][0]
-    : words[0][0] + words[words.length - 1][0];
-};
+  const firstLastLetter = (name = "") => {
+    const words = name.trim().split(" ");
+    return words.length === 1
+      ? words[0][0]
+      : words[0][0] + words[words.length - 1][0];
+  };
 
   return (
     <AuthApp.Provider

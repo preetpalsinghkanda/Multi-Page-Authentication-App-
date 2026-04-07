@@ -14,14 +14,16 @@ import OrderProgress from "./Components/OrderProgress";
 import { Routes, Route } from "react-router-dom";
 
 import ProtectedRoute from "./Auth/ProtectedRoute";
+import Loading from "./Components/Loading";
 
 function App() {
-  const {  auth, page } = useContext(AuthApp);
+  const {  auth, page, isLoading } = useContext(AuthApp);
   return (
     <>
       <div className="max-w-6xl mx-auto">
         <NavBar />
-        <Routes>
+        {isLoading && <Loading/>}
+         <Routes>
           <Route>
             <Route path="/home" element={<Hero />} />
             <Route path="/" element={<Hero />} />
@@ -72,11 +74,11 @@ function App() {
               }
             />
             <Route path="*" element={<Error />} />
-            <Route path="not-found" element={<Error />} />
+            <Route path="not-found" element={<Error />} /> 
 
             {/* <OrderProgress />  */}
           </Route>
-        </Routes>
+        </Routes> 
       </div>
     </>
   );

@@ -9,9 +9,15 @@ import {
 import AuthApp from "../Context/Context";
 import { useNavigate } from "react-router-dom";
 import { useSignUp } from "@clerk/clerk-react";
+import { useSignIn } from "@clerk/clerk-react";
 
 export default function Form(props) {
   const { isLoaded, signUp, setActive } = useSignUp();
+  const {
+    signIn,
+    isLoaded: isSignInLoaded,
+    setActive: setActiveSignIn,
+  } = useSignIn();
 
   const navigate = useNavigate();
 
@@ -46,7 +52,10 @@ export default function Form(props) {
     setIsHideConfirmPass,
     isValidSignupDetails,
     setIsUserAlreadyExist,
-    isUserAlreadyExist ,
+    isUserAlreadyExist,
+    setIsInvalid,
+    isInvalid,
+    setIsLoading,
   } = useContext(AuthApp);
 
   return (
@@ -67,6 +76,14 @@ export default function Form(props) {
 
       <div className="rounded-2xl bg-white px-8 py-8 border-[1.7px] flex gap-4 flex-col  border-[#d6d6d682]">
         <div className="flex flex-col gap-4 min-w-[24vw]">
+          {isInvalid && page === "login" && (
+            <div className="mx-auto px-3 py-2 border bg-[#fdecec] border-[#facaca] rounded-lg">
+              <p className="text-sm text-[#ef4343]">
+                Invalid email or password.
+              </p>
+            </div>
+          )}
+
           {isUserAlreadyExist && (
             <div className="mx-auto px-3 py-2 border bg-[#fdecec] border-[#facaca] rounded-lg">
               <p className="text-sm text-[#ef4343]">
@@ -113,6 +130,7 @@ export default function Form(props) {
               onChange={(e) => {
                 setEmail(e.target.value);
                 setEmailErr(EmailCheck(e.target.value));
+                setIsInvalid(false);
               }}
               type="text"
               id="email"
@@ -135,6 +153,7 @@ export default function Form(props) {
                 onChange={(e) => {
                   setPass(e.target.value);
                   setPassErr(PassCheck(e.target.value));
+                  setIsInvalid(false);
                 }}
                 type={isHidePass ? "password" : "text"}
                 id="pass"
@@ -192,15 +211,17 @@ export default function Form(props) {
         <div id="clerk-captcha"></div>
         <button
           onClick={async () => {
-            if (!isLoaded || !signUp) return;
-
+            // signup
             if (page === "signup") {
+              if (!isLoaded || !signUp) return;
+              setIsLoading(true);
               try {
                 const result = await signUp.create({
                   emailAddress: email,
                   password: pass,
                   firstName: name,
                 });
+
                 await setActive({
                   session: result.createdSessionId,
                 });
@@ -211,12 +232,37 @@ export default function Form(props) {
                 if (message.includes("taken")) {
                   setIsUserAlreadyExist(true);
                 } else {
-                 alert(err.errors?.[0]?.message);
-                } 
+                  alert(message);
+                }
+              } finally {
+                setIsLoading(false); // ✅ VERY IMPORTANT
+              }
+            }
+
+            // login
+            if (page === "login") {
+              setIsLoading(true);
+              try {
+                if (!isSignInLoaded) return;
+
+                const result = await signIn.create({
+                  identifier: email,
+                  password: pass,
+                });
+
+                await setActiveSignIn({
+                  session: result.createdSessionId,
+                });
+
+                navigate("/dashboard");
+              } catch (err) {
+                setIsInvalid(true);
+              } finally {
+                setIsLoading(false); // ✅ VERY IMPORTANT
               }
             }
           }}
-          disabled={!isValidSignupDetails}
+          disabled={page === "signup" ? !isValidSignupDetails : !email || !pass}
           className=" disabled:bg-[#b1b3f8] my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px]  bg-[#6467f2] text-white"
         >
           {props.btn}
@@ -229,9 +275,12 @@ export default function Form(props) {
               if (page === "login") {
                 setPage("signup");
                 navigate("/signup");
+                setIsInvalid(false);
+                
               } else {
                 setPage("login");
                 navigate("/login");
+                setIsUserAlreadyExist(false);
               }
             }}
           >

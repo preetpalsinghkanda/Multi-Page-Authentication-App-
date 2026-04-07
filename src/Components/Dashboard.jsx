@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLayerGroup,
@@ -8,8 +8,19 @@ import {
   faBoxOpen,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
+import { useUser } from "@clerk/clerk-react";
+import AuthApp from "../Context/Context";
 
 export default function Dashboard() {
+  const{name , email  } = useContext(AuthApp)
+  const { user } = useUser();
+  const createdDate = new Date(user?.createdAt);
+  console.log(createdDate.toLocaleDateString());
+
+
+  
+
+  
   return (
     <div className="m-auto  mx-10  my-12 ">
       <div className="flex flex-row gap-3 items-center">
@@ -21,7 +32,7 @@ export default function Dashboard() {
         </div>
         <div>
           <h2 className="font-extrabold text-2xl">Dashboard</h2>
-          <p className="text-md text-[#6b7280]">Welcome back, Piyush Kushwa!</p>
+          <p className="text-md text-[#6b7280]">Welcome back, {name}!</p>
         </div>
       </div>
 
@@ -120,11 +131,11 @@ export default function Dashboard() {
           <div className="flex flex-col py-2 gap-4">
             <div>
               <h6 className="text-[#6b7280] text-sm">Name</h6>
-              <p className="text-md">Piyush Kushwa</p>
+              <p className="text-md">{name}</p>
             </div>
             <div>
               <h6 className="text-[#6b7280] text-sm">Email</h6>
-              <p className="text-md">lightliger2@gmail.com</p>
+              <p className="text-md">{email}</p>
             </div>
            
           </div>

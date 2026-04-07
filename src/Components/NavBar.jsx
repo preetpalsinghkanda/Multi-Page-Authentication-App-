@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser , useClerk } from "@clerk/clerk-react";
 
 export default function NavBar() {
+  const {name , email} = useContext(AuthApp)
 
   const { isSignedIn , user} = useUser();
   const{signOut} = useClerk();
@@ -101,7 +102,7 @@ export default function NavBar() {
                 setPage("signup");
                 navigate("/signup");
               }}
-              className="rounded-lg px-3 py-1.5 font-[700] text-white bg-[#6467f2]"
+              className="rounded-lg px-3 py-1.5 font-[700] text-white bg-[#6467f2] cursor-pointer"
             >
               Sign Up
             </button>
@@ -110,7 +111,7 @@ export default function NavBar() {
           <>
             <div className="flex items-center gap-2">
               <FontAwesomeIcon icon={faUser} />
-              <h5>{"Piyush Kushwah"}</h5>
+              <h5>{name}</h5>
             </div>
 
             <button

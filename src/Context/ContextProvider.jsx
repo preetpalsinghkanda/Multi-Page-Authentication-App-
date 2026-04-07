@@ -31,6 +31,9 @@ export default function AuthProvider({ children }) {
 
   const location = useLocation();
 
+  const[isLoading , setIsLoading] = useState(false)
+
+  const[isInvalid , setIsInvalid] = useState(false);
  
 
   useEffect(() => {
@@ -59,13 +62,15 @@ export default function AuthProvider({ children }) {
       confirmPass;
 
       if(isValid && pass === confirmPass ){
-          setIsValidSignupDetails(isValid);
+          setIsValidSignupDetails(true);
+      }else{
+        setIsValidSignupDetails(false);
       }
   }
 
-  useEffect(() => {
-    checkUserDetails();
-  }, [nameErr, emailErr, passErr, confirmPassErr]);
+useEffect(() => {
+  checkUserDetails();
+}, [name, email, pass, confirmPass, nameErr, emailErr, passErr, confirmPassErr]);
 
   function NameCheck(value) {
     if (value.trim().length < 2) {
@@ -87,10 +92,12 @@ export default function AuthProvider({ children }) {
   }
 
   function PassCheck(value) {
-    if (value.length < 8) {
-      return "Password must be at least 8 characters";
-    }
+  if (value.length < 8) {
+    return "Password must be at least 8 characters";
+  } else {
+    return "";
   }
+}
 
   function confirmPassCheck(value) {
     if (value.trim().length === 0) {
@@ -135,6 +142,12 @@ export default function AuthProvider({ children }) {
         setIsValidSignupDetails,
         isUserAlreadyExist,
         setIsUserAlreadyExist,
+        isInvalid,
+        setIsInvalid,
+        isLoading,
+        setIsLoading,
+
+
         
       }}
     >

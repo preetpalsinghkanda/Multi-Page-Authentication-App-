@@ -11,16 +11,12 @@ import {
 import { useUser } from "@clerk/clerk-react";
 import AuthApp from "../Context/Context";
 
+
+
 export default function Dashboard() {
-  const{name , email  } = useContext(AuthApp)
+  const{name , email  , FinalDate } = useContext(AuthApp)
   const { user } = useUser();
-  const createdDate = new Date(user?.createdAt);
- 
-  const FinalDate = createdDate.toLocaleDateString("en-US" , {
-    year: "numeric",
-    month: "long" ,
-    day : "numeric",
-  });
+
 
 
   
@@ -45,7 +41,7 @@ export default function Dashboard() {
             <h3 className="text-[#41454d] font-[600]">User ID</h3>
             <FontAwesomeIcon icon={faUser} />
           </div>
-          <span className="font-bold ">user_1775384966950</span>
+          <span className="font-bold ">{user.id.slice(0, 15)}...</span>
         </div>
         <div className="border border-[#d9dbde] rounded-xl bg-white flex flex-col flex-1 px-5 py-4 gap-4">
           <div className="flex items-center justify-between">
@@ -85,7 +81,7 @@ export default function Dashboard() {
               <span className="px-2  rounded-full bg-[#dbfce7] text-[#008236] font-[600]">
                 Delivered
               </span>
-              <span className="text-[#6467f2]">View</span>
+              <span className="text-[#6467f2] cursor-pointer hover:underline">View</span>
             </div>
           </div>
 
@@ -96,14 +92,14 @@ export default function Dashboard() {
               <h6 className="font-[600]">Context API Masterclass</h6>
               <div className="text-xs flex items-center gap-1 text-[#6b7280]">
                 <FontAwesomeIcon icon={faClock} />
-                <span>2026-03-12</span>
+                <span>2026-03-24</span>
               </div>
             </div>
             <div className="flex gap-2 text-sm">
               <span className="px-2  rounded-full bg-[#fef9c2] text-[#a65f00] font-[600]">
                 Processing
               </span>
-              <span className="text-[#6467f2]">View</span>
+              <span className="text-[#6467f2] cursor-pointer hover:underline">View</span>
             </div>
           </div>
 
@@ -121,7 +117,7 @@ export default function Dashboard() {
               <span className="px-2  rounded-full bg-[#dbeafe] text-[#1447e6] font-[600]">
                 Shipped
               </span>
-              <span className="text-[#6467f2]">View</span>
+              <span className="text-[#6467f2] cursor-pointer hover:underline">View</span>
             </div>
           </div>
         </div>

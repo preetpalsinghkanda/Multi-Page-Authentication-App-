@@ -74,9 +74,11 @@ function App() {
               }
             />
             <Route path="*" element={<Error />} />
-            <Route path="not-found" element={<Error />} /> 
+            <Route path="not-found" element={<Error />} />
 
-            {/* <OrderProgress />  */}
+            <Route path="/order/:orderId" element={<OrderProgress />} />
+
+            
           </Route>
         </Routes> 
       </div>

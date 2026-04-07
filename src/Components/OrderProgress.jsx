@@ -13,9 +13,13 @@ import {
   faBox,
 } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderProgress() {
   const { setPage } = useContext(AuthApp);
+  const {orderId} = useParams();
+  const navigate = useNavigate();
 
   const steps = [
     { label: "Order Placed", status: "completed", icon: faCircleCheck },
@@ -27,7 +31,7 @@ export default function OrderProgress() {
     <div className="flex m-auto mx-70 py-10 flex-col gap-8 ">
       <div
         className="text-[#848a96] flex items-center gap-2 cursor-pointer"
-        onClick={() => setPage("dashboard")}
+        onClick={() => {setPage("dashboard"); navigate("/dashboard")}}
       >
         {" "}
         <FontAwesomeIcon icon={faArrowLeft} className=" text-[16px]" />
@@ -41,7 +45,7 @@ export default function OrderProgress() {
           </div>
           <div className="flex flex-col items-start ">
             <h3 className="text-black font-[700] text-2xl">Order Details</h3>
-            <p className="text-xs">ORD-001</p>
+            <p className="text-xs">{orderId}</p>
           </div>
         </div>
 
@@ -53,7 +57,7 @@ export default function OrderProgress() {
                 <h3 className="text-[#6b7280] text-[14px] font-bold">
                   URL Parameter — orderId
                 </h3>
-                <h2 className="text-[#6467f2] font-bold text-sm">ORD-001</h2>
+                <h2 className="text-[#6467f2] font-bold text-sm">{orderId}</h2>
               </span>
             </div>
 

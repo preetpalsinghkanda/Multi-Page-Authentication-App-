@@ -34,7 +34,16 @@ export default function AuthProvider({ children }) {
   const[isLoading , setIsLoading] = useState(false)
 
   const[isInvalid , setIsInvalid] = useState(false);
+
  
+    const createdDate = new Date(user?.createdAt);
+ 
+    const FinalDate = createdDate.toLocaleDateString("en-US" , {
+    year: "numeric",
+    month: "long" ,
+    day : "numeric",
+  });
+
 
   useEffect(() => {
     if (location.pathname === "/signup") {
@@ -109,6 +118,10 @@ useEffect(() => {
     }
   }
 
+const firstLastLetter = name.split(" ")[0][0] + name.split(" ").slice(-1)[0][0];
+
+
+
   return (
     <AuthApp.Provider
       value={{ 
@@ -146,7 +159,8 @@ useEffect(() => {
         setIsInvalid,
         isLoading,
         setIsLoading,
-
+FinalDate,
+firstLastLetter,
 
         
       }}

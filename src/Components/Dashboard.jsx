@@ -15,10 +15,13 @@ export default function Dashboard() {
   const{name , email  } = useContext(AuthApp)
   const { user } = useUser();
   const createdDate = new Date(user?.createdAt);
-  console.log(createdDate.toLocaleDateString());
+ 
+  const FinalDate = createdDate.toLocaleDateString("en-US" , {
+    year: "numeric",
+    month: "long" ,
+    day : "numeric",
+  });
 
-
-  
 
   
   return (
@@ -49,7 +52,7 @@ export default function Dashboard() {
             <h3 className="text-[#41454d] font-[600]">Member Since</h3>
             <FontAwesomeIcon icon={faCalendar} />
           </div>
-          <span className="font-bold ">April 5, 2026</span>
+          <span className="font-bold ">{FinalDate}</span>
         </div>
 
         <div className="border border-[#d9dbde] rounded-xl bg-white flex flex-col flex-1 px-5 py-4 gap-4">
@@ -72,10 +75,10 @@ export default function Dashboard() {
 
           <div className="flex items-center gap-2 py-4  justify-between">
             <div>
-              <h6 className="font-[600]">React Router Handbook</h6>
+              <h6 className="font-[600]">Digital Marketing Course</h6>
               <div className="text-xs flex items-center gap-1 text-[#6b7280]">
                 <FontAwesomeIcon icon={faClock} />
-                <span>2024-01-15</span>
+                <span>2026-02-15</span>
               </div>
             </div>
             <div className="flex gap-2 text-sm">
@@ -93,7 +96,7 @@ export default function Dashboard() {
               <h6 className="font-[600]">Context API Masterclass</h6>
               <div className="text-xs flex items-center gap-1 text-[#6b7280]">
                 <FontAwesomeIcon icon={faClock} />
-                <span>2024-03-10</span>
+                <span>2026-03-12</span>
               </div>
             </div>
             <div className="flex gap-2 text-sm">
@@ -108,10 +111,10 @@ export default function Dashboard() {
 
           <div className="flex items-center gap-2 py-4  justify-between">
             <div>
-              <h6 className="font-[600]">Testing with RTL</h6>
+              <h6 className="font-[600]">MERN Stack by tutedude</h6>
               <div className="text-xs flex items-center gap-1 text-[#6b7280]">
                 <FontAwesomeIcon icon={faClock} />
-                <span>2024-03-28</span>
+                <span>2026-04-01</span>
               </div>
             </div>
             <div className="flex gap-2 text-sm">

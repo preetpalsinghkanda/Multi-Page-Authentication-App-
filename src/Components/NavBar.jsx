@@ -111,7 +111,7 @@ export default function NavBar() {
           <>
             <div className="flex items-center gap-2">
               <FontAwesomeIcon icon={faUser} />
-              <h5>{name}</h5>
+              <h5>{user?.fullName || user?.firstName || "No Name"}</h5>
             </div>
 
             <button

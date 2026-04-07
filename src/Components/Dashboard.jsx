@@ -10,13 +10,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "@clerk/clerk-react";
 import AuthApp from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function Dashboard() {
   const{name , email  , FinalDate } = useContext(AuthApp)
   const { user } = useUser();
-
+const navigate = useNavigate();
 
 
   
@@ -31,7 +32,7 @@ export default function Dashboard() {
         </div>
         <div>
           <h2 className="font-extrabold text-2xl">Dashboard</h2>
-          <p className="text-md text-[#6b7280]">Welcome back, {name}!</p>
+          <p className="text-md text-[#6b7280]">Welcome back, {user?.fullName || user?.firstName || "No Name"}!</p>
         </div>
       </div>
 
@@ -81,7 +82,7 @@ export default function Dashboard() {
               <span className="px-2  rounded-full bg-[#dbfce7] text-[#008236] font-[600]">
                 Delivered
               </span>
-              <span className="text-[#6467f2] cursor-pointer hover:underline">View</span>
+              <span onClick={()=>{navigate("/order/ORD-001")}} className="text-[#6467f2] cursor-pointer hover:underline">View</span>
             </div>
           </div>
 
@@ -99,7 +100,7 @@ export default function Dashboard() {
               <span className="px-2  rounded-full bg-[#fef9c2] text-[#a65f00] font-[600]">
                 Processing
               </span>
-              <span className="text-[#6467f2] cursor-pointer hover:underline">View</span>
+              <span onClick={()=>{navigate("/order/ORD-002")}} className="text-[#6467f2] cursor-pointer hover:underline">View</span>
             </div>
           </div>
 
@@ -117,7 +118,7 @@ export default function Dashboard() {
               <span className="px-2  rounded-full bg-[#dbeafe] text-[#1447e6] font-[600]">
                 Shipped
               </span>
-              <span className="text-[#6467f2] cursor-pointer hover:underline">View</span>
+              <span onClick={()=>{navigate("/order/ORD-003")}} className="text-[#6467f2] cursor-pointer hover:underline">View</span>
             </div>
           </div>
         </div>
@@ -130,16 +131,16 @@ export default function Dashboard() {
           <div className="flex flex-col py-2 gap-4">
             <div>
               <h6 className="text-[#6b7280] text-sm">Name</h6>
-              <p className="text-md">{name}</p>
+              <p className="text-md">{user?.fullName || user?.firstName || "Name notFound"}</p>
             </div>
             <div>
               <h6 className="text-[#6b7280] text-sm">Email</h6>
-              <p className="text-md">{email}</p>
+              <p className="text-md">{user?.primaryEmailAddress?.emailAddress || "Email notFound"}</p>
             </div>
            
           </div>
            <hr className="text-[#e4e6eb]" />
-            <button className="bg-[#efeffd] text-[#7173f2] w-full my-4 py-2 rounded-lg cursor-pointer">View Profile</button>
+            <button onClick={()=>navigate("/profile")} className="bg-[#efeffd] text-[#7173f2] w-full my-4 py-2 rounded-lg cursor-pointer">View Profile</button>
         </div>
       </div>
     </div>

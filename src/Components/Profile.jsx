@@ -28,13 +28,13 @@ export default function Profile() {
       <div className=" rounded-2xl   ">
         <div className="bg-[#e1e1fc] flex items-center gap-6 py-10 rounded-t-2xl px-8">
           <div className="w-20 h-20 rounded-full bg-[#6467f2] text-white flex items-center justify-center text-[24px] font-[800] ">
-            {firstLastLetter}
+            {firstLastLetter(user?.fullName)}
           </div>
           <div className="flex flex-col items-start ">
-            <h3 className="text-black font-[700] text-2xl">{name}</h3>
+            <h3 className="text-black font-[700] text-2xl">{user?.fullName || user?.firstName || "Name not found"}</h3>
             <div className="flex flex-col items-start gap-2">
               <h5 className="text-[#6f7b88] text-[14px]">
-                {email}
+                {user?.primaryEmailAddress?.emailAddress || "Email not found"}
               </h5>
               <span className="bg-[#d2d2fc] text-[#7373da] text-[12px] px-2 rounded-full">
                 Authenticated User
@@ -53,7 +53,7 @@ export default function Profile() {
             <FontAwesomeIcon icon={faUser} className="text-[#6b7280]" />
             <span className="flex flex-col items-start">
               <h3 className="text-[#6b7280] text-[14px] font-bold">Full Name</h3>
-              <h2 className="text-black font-bold">{name}</h2>
+              <h2 className="text-black font-bold">{user?.fullName || user?.firstName || "Name not found"}</h2>
             </span>
           </div>
 
@@ -61,7 +61,7 @@ export default function Profile() {
             <FontAwesomeIcon icon={faEnvelope} className="text-[#6b7280]" />
             <span className="flex flex-col items-start">
               <h3 className="text-[#6b7280] text-[14px] font-bold">Email Address</h3>
-              <h2 className="text-black font-bold">{email}</h2>
+              <h2 className="text-black font-bold">{user?.primaryEmailAddress?.emailAddress || "Email not found"}</h2>
             </span>
           </div>
 

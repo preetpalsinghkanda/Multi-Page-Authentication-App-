@@ -17,13 +17,13 @@ import ProtectedRoute from "./Auth/ProtectedRoute";
 import Loading from "./Components/Loading";
 
 function App() {
-  const {  auth, page, isLoading } = useContext(AuthApp);
+  const { auth, page, isLoading } = useContext(AuthApp);
   return (
     <>
       <div className="max-w-6xl mx-auto">
         <NavBar />
-        {isLoading && <Loading/>}
-         <Routes>
+        {isLoading && <Loading />}
+        <Routes>
           <Route>
             <Route path="/home" element={<Hero />} />
             <Route path="/" element={<Hero />} />
@@ -76,11 +76,16 @@ function App() {
             <Route path="*" element={<Error />} />
             <Route path="not-found" element={<Error />} />
 
-            <Route path="/order/:orderId" element={<OrderProgress />} />
-
-            
+            <Route
+              path="/order/:orderId"
+              element={
+                <ProtectedRoute>
+                  <OrderProgress />
+                </ProtectedRoute>
+              }
+            />
           </Route>
-        </Routes> 
+        </Routes>
       </div>
     </>
   );

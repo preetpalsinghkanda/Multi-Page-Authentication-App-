@@ -2,11 +2,10 @@ import React, { children, useEffect } from "react";
 import { useState } from "react";
 import AuthApp from "./Context";
 import { useLocation } from "react-router-dom";
-import {useUser} from "@clerk/clerk-react"
+import { useUser } from "@clerk/clerk-react";
 
 export default function AuthProvider({ children }) {
-  
-  const {isSignedIn , user} = useUser();
+  const { isSignedIn, user } = useUser();
 
   const [page, setPage] = useState("home");
 
@@ -27,23 +26,21 @@ export default function AuthProvider({ children }) {
 
   const [isValidSignupDetails, setIsValidSignupDetails] = useState(false);
 
-  const [isUserAlreadyExist , setIsUserAlreadyExist] = useState(false)
+  const [isUserAlreadyExist, setIsUserAlreadyExist] = useState(false);
 
   const location = useLocation();
 
-  const[isLoading , setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const[isInvalid , setIsInvalid] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
 
- 
-    const createdDate = new Date(user?.createdAt);
- 
-    const FinalDate = createdDate.toLocaleDateString("en-US" , {
+  const createdDate = new Date(user?.createdAt);
+
+  const FinalDate = createdDate.toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long" ,
-    day : "numeric",
+    month: "long",
+    day: "numeric",
   });
-
 
   useEffect(() => {
     if (location.pathname === "/signup") {
@@ -70,16 +67,25 @@ export default function AuthProvider({ children }) {
       pass &&
       confirmPass;
 
-      if(isValid && pass === confirmPass ){
-          setIsValidSignupDetails(true);
-      }else{
-        setIsValidSignupDetails(false);
-      }
+    if (isValid && pass === confirmPass) {
+      setIsValidSignupDetails(true);
+    } else {
+      setIsValidSignupDetails(false);
+    }
   }
 
-useEffect(() => {
-  checkUserDetails();
-}, [name, email, pass, confirmPass, nameErr, emailErr, passErr, confirmPassErr]);
+  useEffect(() => {
+    checkUserDetails();
+  }, [
+    name,
+    email,
+    pass,
+    confirmPass,
+    nameErr,
+    emailErr,
+    passErr,
+    confirmPassErr,
+  ]);
 
   function NameCheck(value) {
     if (value.trim().length < 2) {
@@ -101,12 +107,12 @@ useEffect(() => {
   }
 
   function PassCheck(value) {
-  if (value.length < 8) {
-    return "Password must be at least 8 characters";
-  } else {
-    return "";
+    if (value.length < 8) {
+      return "Password must be at least 8 characters";
+    } else {
+      return "";
+    }
   }
-}
 
   function confirmPassCheck(value) {
     if (value.trim().length === 0) {
@@ -118,13 +124,16 @@ useEffect(() => {
     }
   }
 
-const firstLastLetter = name.split(" ")[0][0] + name.split(" ").slice(-1)[0][0];
-
-
+ const firstLastLetter = (name = "") => {
+  const words = name.trim().split(" ");
+  return words.length === 1
+    ? words[0][0]
+    : words[0][0] + words[words.length - 1][0];
+};
 
   return (
     <AuthApp.Provider
-      value={{ 
+      value={{
         name,
         setName,
         page,
@@ -159,10 +168,8 @@ const firstLastLetter = name.split(" ")[0][0] + name.split(" ").slice(-1)[0][0];
         setIsInvalid,
         isLoading,
         setIsLoading,
-FinalDate,
-firstLastLetter,
-
-        
+        FinalDate,
+        firstLastLetter,
       }}
     >
       {children}

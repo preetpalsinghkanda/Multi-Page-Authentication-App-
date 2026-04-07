@@ -18,20 +18,55 @@ import { useNavigate } from "react-router-dom";
 
 export default function OrderProgress() {
   const { setPage } = useContext(AuthApp);
-  const {orderId} = useParams();
+  const { orderId } = useParams();
   const navigate = useNavigate();
-
-  const steps = [
+  let OrderName = "Order Details";
+let deliveryTime = "Wednesday, April 08" ;
+  let steps = [
+   
     { label: "Order Placed", status: "completed", icon: faCircleCheck },
     { label: "Processing", status: "completed", icon: faClock },
     { label: "Shipped", status: "pending", icon: faTruck },
     { label: "Delivered", status: "pending", icon: faBox },
   ];
+
+  if (orderId === "ORD-001") {
+    OrderName = "Digital Marketing Course";
+    deliveryTime = "Friday, February 06";
+    steps = [
+      { label: "Order Placed", status: "completed", icon: faCircleCheck },
+      { label: "Processing", status: "completed", icon: faClock },
+      { label: "Shipped", status: "completed", icon: faTruck },
+      { label: "Delivered", status: "completed", icon: faBox },
+    ];
+  } else if (orderId === "ORD-002") {
+    OrderName = "Context API Masterclass"
+    deliveryTime = "Sunday, March 29";
+    steps = [
+      { label: "Order Placed", status: "completed", icon: faCircleCheck },
+      { label: "Processing", status: "completed", icon: faClock },
+      { label: "Shipped", status: "pending", icon: faTruck },
+      { label: "Delivered", status: "pending", icon: faBox },
+    ];
+  } else if (orderId === "ORD-003") {
+     OrderName = "MERN Stack by Tutedude";
+    deliveryTime = "Saturday, March 28" ;
+      steps = [
+        { label: "Order Placed", status: "completed", icon: faCircleCheck },
+        { label: "Processing", status: "completed", icon: faClock },
+        { label: "Shipped", status: "completed", icon: faTruck },
+        { label: "Delivered", status: "pending", icon: faBox },
+      ];
+  }
+
   return (
     <div className="flex m-auto mx-70 py-10 flex-col gap-8 ">
       <div
         className="text-[#848a96] flex items-center gap-2 cursor-pointer"
-        onClick={() => {setPage("dashboard"); navigate("/dashboard")}}
+        onClick={() => {
+          setPage("dashboard");
+          navigate("/dashboard");
+        }}
       >
         {" "}
         <FontAwesomeIcon icon={faArrowLeft} className=" text-[16px]" />
@@ -44,7 +79,7 @@ export default function OrderProgress() {
             <FontAwesomeIcon icon={faBoxOpen} className="text-[30px]" />
           </div>
           <div className="flex flex-col items-start ">
-            <h3 className="text-black font-[700] text-2xl">Order Details</h3>
+            <h3 className="text-black font-[700] text-2xl">{OrderName}</h3>
             <p className="text-xs">{orderId}</p>
           </div>
         </div>
@@ -55,7 +90,7 @@ export default function OrderProgress() {
               <FontAwesomeIcon icon={faHashtag} className="text-[#6b7280]" />
               <span className="flex flex-col items-start">
                 <h3 className="text-[#6b7280] text-[14px] font-bold">
-                  URL Parameter — orderId
+                  URL Parameter (orderId)
                 </h3>
                 <h2 className="text-[#6467f2] font-bold text-sm">{orderId}</h2>
               </span>
@@ -110,7 +145,7 @@ export default function OrderProgress() {
                 <h3 className="text-[#6b7280] text-[14px] font-bold">
                   Estimated Delivery
                 </h3>
-                <h2 className="text-black font-bold">Thursday, April 9</h2>
+                <h2 className="text-black font-bold">{deliveryTime}</h2>
               </span>
             </div>
           </div>

@@ -2,9 +2,11 @@ import React, { children, useEffect } from "react";
 import { useState } from "react";
 import AuthApp from "./Context";
 import { useLocation } from "react-router-dom";
+import {useUser} from "@clerk/clerk-react"
 
 export default function AuthProvider({ children }) {
-  const [isLogin, setIsLogin] = useState(false);
+  
+  const {isSignedIn , user} = useUser();
 
   const [page, setPage] = useState("home");
 
@@ -24,6 +26,8 @@ export default function AuthProvider({ children }) {
   const [isHideConfirmPass, setIsHideConfirmPass] = useState(true);
 
   const [isValidSignupDetails, setIsValidSignupDetails] = useState(false);
+
+  const [isUserAlreadyExist , setIsUserAlreadyExist] = useState(false)
 
   const location = useLocation();
 
@@ -83,8 +87,8 @@ export default function AuthProvider({ children }) {
   }
 
   function PassCheck(value) {
-    if (value.length < 6) {
-      return "Password must be at least 6 characters";
+    if (value.length < 8) {
+      return "Password must be at least 8 characters";
     }
   }
 
@@ -100,9 +104,7 @@ export default function AuthProvider({ children }) {
 
   return (
     <AuthApp.Provider
-      value={{
-        isLogin,
-        setIsLogin,
+      value={{ 
         name,
         setName,
         page,
@@ -131,6 +133,9 @@ export default function AuthProvider({ children }) {
         setIsHideConfirmPass,
         isValidSignupDetails,
         setIsValidSignupDetails,
+        isUserAlreadyExist,
+        setIsUserAlreadyExist,
+        
       }}
     >
       {children}

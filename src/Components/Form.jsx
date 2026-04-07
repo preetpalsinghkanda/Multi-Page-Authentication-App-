@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPen, faEye, faUser, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserPen,
+  faEye,
+  faUser,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 import { useNavigate } from "react-router-dom";
-
+import { useSignUp } from "@clerk/clerk-react";
 
 export default function Form(props) {
-  
-  const navigate = useNavigate()
+  const { isLoaded, signUp, setActive } = useSignUp();
+
+  const navigate = useNavigate();
 
   const {
     auth,
@@ -39,12 +45,11 @@ export default function Form(props) {
     isHideConfirmPass,
     setIsHideConfirmPass,
     isValidSignupDetails,
-
+    setIsUserAlreadyExist,
+    isUserAlreadyExist ,
   } = useContext(AuthApp);
 
   return (
-    
-
     <div className="flex  justify-center items-center flex-col gap-8 my-10">
       <div className="flex  flex-col justify-center items-center gap-2">
         <div className=" flex  px-2.5 py-3  rounded-full bg-[#eaebf9]">
@@ -62,6 +67,14 @@ export default function Form(props) {
 
       <div className="rounded-2xl bg-white px-8 py-8 border-[1.7px] flex gap-4 flex-col  border-[#d6d6d682]">
         <div className="flex flex-col gap-4 min-w-[24vw]">
+          {isUserAlreadyExist && (
+            <div className="mx-auto px-3 py-2 border bg-[#fdecec] border-[#facaca] rounded-lg">
+              <p className="text-sm text-[#ef4343]">
+                An account with this email already exists.
+              </p>
+            </div>
+          )}
+
           {page === "signup" && (
             <div className="flex flex-col gap-1">
               <label
@@ -125,16 +138,16 @@ export default function Form(props) {
                 }}
                 type={isHidePass ? "password" : "text"}
                 id="pass"
-                placeholder="Min 6 characters"
+                placeholder="Min 8 characters"
                 className="w-full focus:outline-0"
                 value={pass}
               />
               <FontAwesomeIcon
-              onClick={()=>setIsHidePass(!isHidePass)}
+                onClick={() => setIsHidePass(!isHidePass)}
                 icon={isHidePass ? faEye : faEyeSlash}
                 className="text-[12px] cursor-pointer text-[#7b7a7a]"
               />
-            </div> 
+            </div>
             {passErr && (
               <p className="text-[12px] px-1 text-[#ef4c5b]">{passErr}</p>
             )}
@@ -155,25 +168,57 @@ export default function Form(props) {
                     setConfirmPassErr(confirmPassCheck(e.target.value));
                   }}
                   value={confirmPass}
-                 type={isHideConfirmPass ? "password" : "text"}
+                  type={isHideConfirmPass ? "password" : "text"}
                   id="pass"
                   placeholder="Repeat your password "
                   className=" w-full focus:outline-0"
                 />
                 <FontAwesomeIcon
-                 onClick={()=>setIsHideConfirmPass(!isHideConfirmPass)}
+                  onClick={() => setIsHideConfirmPass(!isHideConfirmPass)}
                   icon={isHideConfirmPass ? faEye : faEyeSlash}
                   className="text-[12px] cursor-pointer text-[#7b7a7a]"
                 />
               </div>
 
               {confirmPassErr && (
-                <p className="text-[12px] px-1 text-[#ef4c5b]">{confirmPassErr}</p>
+                <p className="text-[12px] px-1 text-[#ef4c5b]">
+                  {confirmPassErr}
+                </p>
               )}
             </div>
           )}
         </div>
-        <button  disabled={!isValidSignupDetails} className=" disabled:bg-[#b1b3f8] my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px]  bg-[#6467f2] text-white">
+
+        <div id="clerk-captcha"></div>
+        <button
+          onClick={async () => {
+            if (!isLoaded || !signUp) return;
+
+            if (page === "signup") {
+              try {
+                const result = await signUp.create({
+                  emailAddress: email,
+                  password: pass,
+                  firstName: name,
+                });
+                await setActive({
+                  session: result.createdSessionId,
+                });
+
+                navigate("/dashboard");
+              } catch (err) {
+                const message = err.errors?.[0]?.message;
+                if (message.includes("taken")) {
+                  setIsUserAlreadyExist(true);
+                } else {
+                 alert(err.errors?.[0]?.message);
+                } 
+              }
+            }
+          }}
+          disabled={!isValidSignupDetails}
+          className=" disabled:bg-[#b1b3f8] my-2 w-full  cursor-pointer font-[700] py-2 rounded-[8px]  bg-[#6467f2] text-white"
+        >
           {props.btn}
         </button>
         <p className="self-center text-[#7b7a7a] text-[16px]">
@@ -183,10 +228,10 @@ export default function Form(props) {
             onClick={() => {
               if (page === "login") {
                 setPage("signup");
-                navigate("/signup")
+                navigate("/signup");
               } else {
                 setPage("login");
-                navigate("/login")
+                navigate("/login");
               }
             }}
           >

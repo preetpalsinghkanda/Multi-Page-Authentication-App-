@@ -16,7 +16,7 @@ import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./Auth/ProtectedRoute";
 
 function App() {
-  const { isLogin, auth, page } = useContext(AuthApp);
+  const {  auth, page } = useContext(AuthApp);
   return (
     <>
       <div className="max-w-6xl mx-auto">

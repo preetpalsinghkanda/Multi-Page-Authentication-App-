@@ -11,7 +11,7 @@ https://authappbypreet.netlify.app/
 
 ---
 
-## 📸 Preview
+##  Preview
 
 <img width="1807" height="982" alt="download" src="https://github.com/user-attachments/assets/0565ed83-f5f5-4d6d-8827-f52c0a4b8dac" />
 

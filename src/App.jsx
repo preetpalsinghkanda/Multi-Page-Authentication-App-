@@ -87,7 +87,7 @@ function App() {
               }
             />
           </Route>
-        </Routes> 
+        </Routes>
 
         
       </div>

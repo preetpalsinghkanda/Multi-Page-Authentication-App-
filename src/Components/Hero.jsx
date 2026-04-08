@@ -48,15 +48,15 @@ export default function Hero() {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-25">
-        <div className="text-[#6467f2] mb-8 flex items-center gap-2 px-10 text-[16px] font-[600] py-1 rounded-full bg-[#eaebf9]"><FontAwesomeIcon icon={faCode}  /><span>Learn + Code + Repeat</span></div>
-        <h1 className="text-[54px] font-[800] text-base/16">
+      <div className="flex flex-col items-center py-18 md:py-20 lg:py-25">
+        <div className="text-[#6467f2] mb-8 flex items-center gap-2 px-10 text-[12px] md:text-[14px] lg:text-[16px] font-[600] py-1 rounded-full bg-[#eaebf9]"><FontAwesomeIcon icon={faCode}  /><span>Learn + Code + Repeat</span></div>
+        <h1 className=" lg:text-[54px] md:text-[45px] text-[30px] font-[800] text-base/10 md:text-base/14 lg:text-base/16">
           Multi-Page Auth App{" "}
           <span className="w-fit mx-auto block  text-[#6467f2]">
             Built for Learning
           </span>
         </h1>
-        <p className="max-w-xl mx-auto text-center font-[600] text-[18px] my-8 text-[#6b7280]">
+        <p className=" max-w-sm md:max-w-xl   mx-auto text-center font-[600] lg:text-[18px] md:text-[18px] text-[16px]  my-5 text-[#6b7280]">
           A complete demonstration of client-side routing, user authentication
           with Context API, protected pages, dynamic routes, and component
           testing with React Testing Library.
@@ -104,7 +104,7 @@ export default function Hero() {
           Explore the Pages
         </h2>
 
-        <div className="grid gap-x-12 gap-y-6 grid-cols-3 py-8">
+        <div className="grid gap-x-12 gap-y-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 min-w-[70vw]">
           {pagesName.map((page, index) => (
             <div
               key={index}
@@ -120,7 +120,7 @@ export default function Hero() {
                   setPage(page.page);
                 }
               }}
-              className="cursor-pointer px-5 py-4 w-72 bg-white rounded-lg"
+              className="cursor-pointer px-5 py-4 w-72 bg-white rounded-lg min-w-full"
             >
               <div className="flex items-center justify-between">
                 <h5 className="font-[600]">{page.title}</h5>

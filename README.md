@@ -1,16 +1,44 @@
-# React + Vite
+#  Multi-Page Authentication App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive multi-page authentication web application built with React.
+It allows users to securely sign up, log in, access protected routes, and manage their profile with a smooth user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Live Link
 
-## React Compiler
+https://authappbypreet.netlify.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 Preview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<img width="1807" height="982" alt="download" src="https://github.com/user-attachments/assets/0565ed83-f5f5-4d6d-8827-f52c0a4b8dac" />
+
+
+---
+
+##  Features
+
+* User Authentication (Login / Signup)
+* Protected Routes
+* Dashboard
+* Profile Management
+* Dynamic Order Tracking
+* Responsive Hamburger Menu
+* Fast & optimized with Vite
+
+---
+
+##  Tech Stack
+
+* React JS
+* Tailwind CSS
+* Clerk Authentication
+* React Router DOM
+* Netlify
+
+---
+
+
+Made with by **Preet**

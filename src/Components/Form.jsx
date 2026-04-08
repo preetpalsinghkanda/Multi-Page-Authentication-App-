@@ -74,7 +74,7 @@ export default function Form(props) {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-white px-8 py-8 border-[1.7px] flex gap-4 flex-col  border-[#d6d6d682]">
+      <div className="rounded-2xl bg-white px-8 py-8 border-[1.7px] md:min-w-100 min-w-[90vw]  flex gap-4 flex-col  border-[#d6d6d682]">
         <div className="flex flex-col gap-4 min-w-[24vw]">
           {isInvalid && page === "login" && (
             <div className="mx-auto px-3 py-2 border bg-[#fdecec] border-[#facaca] rounded-lg">

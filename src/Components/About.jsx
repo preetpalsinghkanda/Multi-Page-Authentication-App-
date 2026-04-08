@@ -12,31 +12,31 @@ import AuthApp from "../Context/Context";
 import { useNavigate } from "react-router-dom";
 
 export default function About() {
-  const navigate = useNavigate()
-  const{setPage}=useContext(AuthApp)
+  const navigate = useNavigate();
+  const{setPage}=useContext(AuthApp);
   return (
-    <div className="flex m-auto mx-40 py-15 flex-col">
+    <div className="flex m-auto lg:mx-40  md:mx-25 mx-1.5 py-12 lg:py-15 flex-col">
       <div className="text-[#848a96] flex items-center gap-2 cursor-pointer" onClick={()=>{setPage("home"); navigate("/")}}>
         {" "}
         <FontAwesomeIcon icon={faArrowLeft} className=" text-[16px]" />
         <button className="cursor-pointer">Back to Home</button>
       </div>
 
-      <div className="flex py-8 flex-col items-start">
-        <div className="flex items-center justify-center gap-4">
+      <div className="flex py-8 flex-col items-start ">
+        <div className="flex items-center justify-center gap-4 ">
           <FontAwesomeIcon
             icon={faInfo}
             className="p-2 bg-[#eaebf9] rounded-full text-[20px] text-[#6467f2]"
           />
-          <h2 className="text-4xl font-bold ">About This Project</h2>
+          <h2 className=" lg:text-4xl text-3xl font-bold ">About This Project</h2>
         </div>
-        <p className="py-8 text-xl">
+        <p className="py-8 lg:text-xl text-lg text-[#5f636c]">
           This is a multi-page React application built as a student Project
           demonstrating three core concepts of modern frontend development.
         </p>
 
         <div className="flex flex-col gap-8">
-          <section className=" py-12 px-6  rounded-xl bg-white">
+          <section className=" py-12 px-6  rounded-xl bg-white border-[#a4a4a42a] border-2">
             <h4 className="font-bold text-xl mb-8">Project Overview</h4>
 
             <div className="flex flex-col gap-8 ">
@@ -93,7 +93,7 @@ export default function About() {
             </div>
           </section>
 
-          <section className="py-12 px-6  rounded-xl bg-white">
+          <section className="py-12 px-6  rounded-xl bg-white border-[#a4a4a42a] border-1">
             <h4 className="font-bold text-xl mb-6">Tech Stack</h4>
             <ul className="list-disc px-10 text-lg marker:text-[#6467f2] text-[#6b7284]">
               <li>React Js</li>
@@ -107,7 +107,7 @@ export default function About() {
             </ul>
           </section>
 
-          <section className="py-12 px-6  rounded-xl bg-white">
+          <section className="py-12 px-6  rounded-xl bg-white border-[#a4a4a42a] border-1">
             <h4 className="font-bold text-xl mb-6">
               Dynamic Routes Demonstrated
             </h4>
@@ -120,11 +120,10 @@ export default function About() {
                 - View order details by ID
               </div>
             </div>
-            <div></div>
           </section>
 
-          <section className="py-4 px-4 rounded-xl bg-white">
-            <div className="flex items-center gap-2 text-[#62666c]"><FontAwesomeIcon icon={faGithub}/><p>Built as a learning exercise for modern React development patterns.</p></div>
+          <section className="py-4 px-4 rounded-xl bg-white border-[#a4a4a42a] border-1">
+            <div className="flex items-center gap-2 text-[#62666c] leading-5"><FontAwesomeIcon icon={faGithub}/><p>Built as a learning exercise for modern React development patterns.</p></div>
           </section>
         </div>
       </div>

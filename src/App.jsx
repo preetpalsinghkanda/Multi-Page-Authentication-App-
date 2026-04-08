@@ -15,6 +15,7 @@ import { Routes, Route } from "react-router-dom";
 
 import ProtectedRoute from "./Auth/ProtectedRoute";
 import Loading from "./Components/Loading";
+import Hamburger from "./Components/Hamburger";
 
 function App() {
   const { auth, page, isLoading } = useContext(AuthApp);
@@ -22,6 +23,7 @@ function App() {
     <>
       <div className="max-w-6xl mx-auto">
         <NavBar />
+        <Hamburger/>
         {isLoading && <Loading />}
         <Routes>
           <Route>
@@ -85,7 +87,9 @@ function App() {
               }
             />
           </Route>
-        </Routes>
+        </Routes> 
+
+        
       </div>
     </>
   );

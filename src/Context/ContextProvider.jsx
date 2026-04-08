@@ -34,6 +34,8 @@ export default function AuthProvider({ children }) {
 
   const [isInvalid, setIsInvalid] = useState(false);
 
+  const[isHamburgerEnabled , setIsHamburgerEnabled] = useState(false)
+
   const createdDate = new Date(user?.createdAt);
 
   const FinalDate = createdDate.toLocaleDateString("en-US", {
@@ -170,6 +172,8 @@ export default function AuthProvider({ children }) {
         setIsLoading,
         FinalDate,
         firstLastLetter,
+        isHamburgerEnabled,
+        setIsHamburgerEnabled,
       }}
     >
       {children}

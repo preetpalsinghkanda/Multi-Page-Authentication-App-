@@ -5,16 +5,18 @@ import {
   faFingerprint,
   faUser,
   faArrowRightFromBracket,
+  faBars,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import AuthApp from "../Context/Context";
 import { useNavigate } from "react-router-dom";
 import { useUser, useClerk } from "@clerk/clerk-react";
 
 export default function NavBar() {
+  const { isHamburgerEnabled, setIsHamburgerEnabled , page, setPage  } = useContext(AuthApp);
   const { isSignedIn, user } = useUser();
   const { signOut } = useClerk();
   const navigate = useNavigate();
-  const { authTonggle, auth, setAuth, page, setPage } = useContext(AuthApp);
   return (
     <div className="w-full border-b-2 border-[#edf0ee] h-18 flex items-center justify-between px-6 sticky top-0  bg-white/30 backdrop-blur-md ">
       <div
@@ -28,7 +30,7 @@ export default function NavBar() {
         <span className="text-[#6467f2] font-[800] text-xl">AuthApp</span>
       </div>
 
-      <div className="flex gap-2">
+      <div className="hidden md:flex gap-2">
         <button
           onClick={() => {
             setPage("home");
@@ -77,7 +79,7 @@ export default function NavBar() {
         )}
       </div>
 
-      <div className="flex gap-3 items-center">
+      <div className=" gap-3 items-center hidden md:flex">
         {!isSignedIn ? (
           <>
             <button
@@ -121,6 +123,11 @@ export default function NavBar() {
             </button>
           </>
         )}
+      </div>
+      <div className="md:hidden">
+        <button className="text-xl cursor-pointer" onClick={()=>setIsHamburgerEnabled(!isHamburgerEnabled)}>
+          <FontAwesomeIcon icon={!isHamburgerEnabled ? faBars : faXmark} />
+        </button>
       </div>
     </div>
   );

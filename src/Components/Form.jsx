@@ -147,7 +147,7 @@ export default function Form(props) {
               Password
             </label>
             <div
-              className={` ${passErr ? "focus-within:border-[#ef4c5b] border-[#ef4c5b]" : ""} border focus-within:border-[#b1b3f8] focus-within:border-2  border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]`}
+              className={` gap-2 ${passErr ? "focus-within:border-[#ef4c5b] border-[#ef4c5b]" : ""} border focus-within:border-[#b1b3f8] focus-within:border-2  border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]`}
             >
               <input
                 onChange={(e) => {
@@ -180,7 +180,7 @@ export default function Form(props) {
               >
                 Confirm password
               </label>
-              <div className="border focus-within:border-[#b1b3f8] focus-within:border-2 border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
+              <div className="gap-2 border focus-within:border-[#b1b3f8] focus-within:border-2 border-[#d6d6d6] h-10 rounded-lg items-center flex px-3 placeholder:font-[500] bg-[#f9fafb]">
                 <input
                   onChange={(e) => {
                     setConfirmPass(e.target.value);

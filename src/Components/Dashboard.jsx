@@ -22,7 +22,7 @@ const navigate = useNavigate();
 
   
   return (
-    <div className="m-auto  mx-10  my-12 ">
+    <div className="m-auto  mx-1.5  my-12 md:mx-10">
       <div className="flex flex-row gap-3 items-center">
         <div className=" flex items-center justify-center h-12 w-12 rounded-full bg-[#eaebf9]">
           <FontAwesomeIcon
@@ -36,13 +36,13 @@ const navigate = useNavigate();
         </div>
       </div>
 
-      <div className="w-full  my-8  flex gap-6 ">
+      <div className="w-full  my-8  flex gap-6 flex-col md:flex-row">
         <div className="border border-[#d9dbde] rounded-xl bg-white flex flex-col flex-1 px-5 py-4 gap-4">
           <div className="flex items-center justify-between">
             <h3 className="text-[#41454d] font-[600]">User ID</h3>
             <FontAwesomeIcon icon={faUser} />
           </div>
-          <span className="font-bold ">{user.id.slice(0, 15)}...</span>
+          <span className="font-bold  truncate w-full md:w-40 ">{user.id}</span>
         </div>
         <div className="border border-[#d9dbde] rounded-xl bg-white flex flex-col flex-1 px-5 py-4 gap-4">
           <div className="flex items-center justify-between">
@@ -61,7 +61,7 @@ const navigate = useNavigate();
         </div>
       </div>
 
-      <div className="flex w-full gap-8 ">
+      <div className="flex w-full gap-8 flex-col lg:flex-row">
         <div className=" flex flex-2 px-4 w-full  flex-col border border-[#d9dbde] rounded-xl bg-white">
           <div className="flex items-center gap-2 py-3.5 ">
             <FontAwesomeIcon icon={faBoxOpen} className="text-xl" />

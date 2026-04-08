@@ -58,9 +58,8 @@ let deliveryTime = "Wednesday, April 08" ;
         { label: "Delivered", status: "pending", icon: faBox },
       ];
   }
-
   return (
-    <div className="flex m-auto mx-70 py-10 flex-col gap-8 ">
+    <div className="flex m-auto  py-10 flex-col gap-8 mx-1 md:mx-40 lg:mx-70">
       <div
         className="text-[#848a96] flex items-center gap-2 cursor-pointer"
         onClick={() => {

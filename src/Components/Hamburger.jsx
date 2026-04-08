@@ -8,14 +8,14 @@ export default function Hamburger() {
   const {
     setPage,
     page,
-    isSignedIn,
     setIsHamburgerEnabled,
     isHamburgerEnabled,
   } = useContext(AuthApp);
   const { signOut } = useClerk();
+  const { isSignedIn } = useUser();
   return (
     isHamburgerEnabled && (
-      <div className="border my-2 mx-4 rounded-md bg-white border-[#a4a4a42a] w-60 absolute right-0 flex flex-col py-4 px-3 gap-2">
+      <div className="shadow-2xl border fixed top-20   my-2 mx-4 rounded-lg bg-white border-[#a4a4a42a] w-60 right-0 flex flex-col py-4 px-3 gap-2">
         <button
           onClick={() => {
             setPage("home");
@@ -117,11 +117,11 @@ export default function Hamburger() {
                 signOut();
                 setIsHamburgerEnabled(false);
               }}
-              className=" cursor-pointer flex items-center gap-2 px-4 rounded-lg py-1.5 bg-[#fdecec] text-[#ef4374] font-bold"
+              className=" justify-center cursor-pointer flex items-center gap-2 px-4 rounded-lg py-1.5 bg-[#fdecec] text-[#ef4374] font-bold"
             >
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />
               Logout
             </button>
+            
           </>
         )}
       </div>

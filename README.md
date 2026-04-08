@@ -41,4 +41,4 @@ https://authappbypreet.netlify.app/
 ---
 
 
-Made with by **Preet**
+Made with love by **Preet**

@@ -58,6 +58,8 @@ export default function Form(props) {
     setIsLoading,
   } = useContext(AuthApp);
 
+// in this i used AI for loading
+  
   return (
     <div className="flex  justify-center items-center flex-col gap-8 my-10">
       <div className="flex  flex-col justify-center items-center gap-2">
@@ -235,7 +237,7 @@ export default function Form(props) {
                   alert(message);
                 }
               } finally {
-                setIsLoading(false); // ✅ VERY IMPORTANT
+                setIsLoading(false); 
               }
             }
 
@@ -258,7 +260,7 @@ export default function Form(props) {
               } catch (err) {
                 setIsInvalid(true);
               } finally {
-                setIsLoading(false); // ✅ VERY IMPORTANT
+                setIsLoading(false); 
               }
             }
           }}
